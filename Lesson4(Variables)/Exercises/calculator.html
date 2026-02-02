@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <style>
+            body {
+
+                background-color: black;
+            }
+
+            .container {
+                display: grid;
+                grid-template-columns: 80px 80px 80px 80px;
+                gap: 5px;
+            }
+
+            .btn {
+                padding: 22px 10px;
+                border-radius: 50%;
+                font-size: 20px;
+                margin: 5px;
+                color: white;
+                background-color: rgb(100,100,100);
+                border: none;
+                cursor: pointer;
+            }
+
+            .opt {
+                background-color: orange;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <button class="btn" onclick="
+                val += 1;
+                console.log(val);
+            ">
+                1
+            </button>
+            <button class="btn" onclick="
+                val += 2;
+                console.log(val);
+            ">
+                2
+            </button>
+            <button class="btn" onclick="
+                val += 3;
+                console.log(val);
+            ">
+                3
+            </button>
+            <button class="btn opt" onclick="
+                val += ' + ';
+                console.log(val);
+            ">
+                +
+            </button>
+            <button class="btn" onclick="
+                val += 4;
+                console.log(val);
+            ">
+                4
+            </button>
+            <button class="btn" onclick="
+                val += 5;
+                console.log(val);
+            ">
+                5
+            </button>
+            <button class="btn" onclick="
+                val += 6;
+                console.log(val);
+            ">
+                6
+            </button>
+            <button class="btn opt" onclick="
+                val += ' - ';
+                console.log(val);
+            ">
+                -
+            </button>
+            <button class="btn" onclick="
+                val += 7;
+                console.log(val);
+            ">
+                7
+            </button>
+            <button class="btn" onclick="
+                val += 8;
+                console.log(val);
+            ">
+                8
+            </button>
+            <button class="btn" onclick="
+                val += 9;
+                console.log(val);
+            ">
+                9
+            </button>
+            <button class="btn opt" onclick="
+                val += ' * '
+                console.log(val);
+            ">
+                x
+            </button>
+            <button class="btn" onclick="
+                val += 0;
+                console.log(val);
+            ">
+                0
+            </button>
+            <button class="btn" onclick="
+                val += '.';
+                console.log(val);
+            ">
+                .
+            </button>
+            <button class="btn" onclick="
+                val = eval(val);
+                console.log(val);
+            ">
+                =
+            </button>
+            <button class="btn opt" onclick="
+                val += ' / ';
+                console.log(val);
+            ">
+                /
+            </button>
+            <button class="btn opt" onclick="
+                val = '';
+                console.log(val);
+            ">
+                Clear
+            </button>
+        </div>
+        <script>
+            let val = '';
+        </script>
+    </body>
+</html>
