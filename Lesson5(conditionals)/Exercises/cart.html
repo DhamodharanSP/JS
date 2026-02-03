@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cart</title>
+        <style>
+            button {
+                padding: 5px 10px;
+                border: none;
+                border-radius: 10px;
+                margin: 0 10px;
+                box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+            .add {
+                background-color: orange;
+            }
+            .remove {
+                background-color: lightpink;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Cart Quantity</h3>
+        <button onclick="
+            console.log(`Cart Quantity: ${quantity}`);
+        ">
+            Show Quantity
+        </button>
+        <button class="add" onclick="
+            if(quantity + 1 > 10)
+                alert('The Cart is full!');
+            else {
+                quantity++;
+                console.log('1 Item added...');
+            }
+        ">
+            Add to Cart
+        </button>
+        <button class="add" onclick="
+            if(quantity + 2 > 10)
+                alert('The Cart will overflow!');
+            else {
+                quantity += 2;
+                console.log('2 Items added...');
+            }
+            
+        ">
+            +2
+        </button>
+        <button class="add" onclick="
+            if(quantity + 3 > 10)
+                alert('The Cart will overflow!');
+            else {
+                quantity += 3;
+                console.log('3 Items added...');
+            }
+        ">
+            +3
+        </button>
+
+        <button class="remove" onclick="
+            if(quantity == 0)
+                alert('Not enough Quantity to remove!');
+            else
+            {
+                quantity--;
+                console.log('1 Item removed...');
+            }
+        ">
+            Remove from Cart
+        </button>
+
+        <button class="remove" onclick="
+            if(quantity - 2 < 0)
+               alert('Not enough Quantity to remove!');
+            else
+            {
+                quantity-=2;
+                console.log('2 Items removed...');
+            }
+        ">
+            -2
+        </button>
+
+        <button class="remove" onclick="
+            if(quantity - 3 < 0)
+                alert('Not enough Quantity to remove!');
+            else
+            {
+                quantity-=3;
+                console.log('3 Items removed...');
+            }
+        ">
+            -3
+        </button>
+
+        <button onclick="
+            quantity = 0;
+            console.log('Cart Emptied...')
+        ">
+            Reset Cart
+        </button>
+        <script>
+            let quantity = 0;
+        </script>
+    </body>
+</html>

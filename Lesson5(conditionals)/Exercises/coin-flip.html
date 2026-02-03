@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coin Flip Game</title>
+        <style>
+            .coin {
+                margin: 5px;
+                padding: 20px 20px;
+                border: none;
+                border-radius: 50%;
+                background-color: rgb(238, 185, 62);
+                font-weight: bold;
+                box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
+                cursor: pointer;
+            }
+
+            .btn {
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: white;
+                box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            }
+        </style>
+    </head>
+    <body>
+        <button class="coin" onclick="
+            random = Math.random();
+            guess = random < 0.5 ? 'Win' : 'Loss';
+            (guess === 'Win') ? win++ : loss++;
+            console.log(`You ${guess}!`);
+        ">
+            Head
+        </button>
+        <button class="coin" onclick="
+            random = Math.random();
+            guess = random < 0.5 ? 'Loss' : 'Win';
+            (guess === 'Win') ? win++ : loss++;
+            console.log(`You ${guess}!`);
+        ">
+            Tail
+        </button>
+        <br>
+        <button class="btn" onclick="
+            console.log(`You: ${win}, Computer: ${loss}`)
+        ">
+            Show Results
+        </button>
+        <button class="btn" onclick="
+            win = loss = 0;
+            console.log('Score Reset');
+        ">
+            Reset
+        </button>
+        <script>
+            let random, guess, win, loss;
+            win = loss = 0;
+
+        </script>
+    </body>
+</html>

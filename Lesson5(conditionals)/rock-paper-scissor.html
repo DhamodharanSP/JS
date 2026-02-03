@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissor</title>
+    </head>
+    <body>
+        <h3>Rock Paper Scissors</h3>
+        <button onclick="
+            random = Math.random();
+            if(random >= 0 && random < 1/3)
+            {
+                move = 'rock';
+                status = 'tie';
+                tie++;
+            }
+            else if(random >= 1/3 && random < 2/3)
+            {
+                move = 'paper';
+                status = 'loss';
+                loss++;
+            }
+            else
+            {
+                move = 'scissors';
+                status = 'win';
+                win++;
+            }
+
+            alert(`Your move: rock and Computer's move: ${move}... You ${status}`);
+
+        ">
+            Rock
+        </button>
+
+        <button onclick="
+            random = Math.random();
+            if(random >= 0 && random < 1/3)
+            {
+                move = 'rock';
+                status = 'win';
+                win++;
+            }
+            else if(random >= 1/3 && random < 2/3)
+            {
+                move = 'paper';
+                status = 'tie';
+                tie++;
+            }
+            else
+            {
+                move = 'scissors';
+                status = 'loss';
+                loss++;
+            }
+
+            alert(`Your move: paper and Computer's move: ${move}... You ${status}!`);
+
+        ">
+            Paper
+        </button>
+
+        <button onclick="
+            random = Math.random();
+            if(random >= 0 && random < 1/3)
+            {
+                move = 'rock';
+                status = 'loss';
+                loss++;
+            }
+            else if(random >= 1/3 && random < 2/3)
+            {
+                move = 'paper';
+                status = 'win';
+                win++;
+            }
+            else
+            {
+                move = 'scissors';
+                status = 'tie';
+                tie++;
+            }
+
+            alert(`Your move: scissors and Computer's move: ${move}... You ${status}!`);
+
+        ">
+            Scissors
+        </button>
+
+        <button onclick="
+            console.log(`Win: ${win}, Loss: ${loss}, Tie: ${tie}`);
+        ">
+            Show results
+        </button>
+
+        <button onclick="
+            win, loss, tie = 0;
+        ">
+            Reset
+        </button>
+        <script>
+            let win = 0, loss = 0, tie = 0;
+            let random, move, status;
+        </script>
+    </body>
+</html>

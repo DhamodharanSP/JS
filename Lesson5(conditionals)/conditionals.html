@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Conditionals</title>
+    </head>
+    <body>
+        <script>
+            let age = 17;
+            const votingAge = 18, drivingAge = 16;
+            if(age < drivingAge)
+            {
+                console.log('Not eligible to drive');
+            }
+            else 
+            {
+                console.log('Eligible to drive');
+            }
+            if(age >= votingAge)
+                console.log('Eligible to vote');// single line statements may not need curly braces
+            else if(age === 17) 
+                console.log('See you next year');
+            else 
+                console.log('Not eligible for voting');
+
+
+            // Conditionals work on "Truthy" & "Falsy" values in JavaScript
+
+            let cartQuantity = 5;
+            if(cartQuantity) 
+                console.log('Cart has some items'); // this is replacement of "if (cartQuantity > 0)"
+
+            // Falsy values => 1) false  2) 0  3) ''  4) NaN  5) undefined  6) null
+
+            // All others are Truthy values
+
+            console.log(!0);
+
+            console.log('Text' / 5);
+
+            let a;
+            console.log(a);
+            
+            // Ternary operator
+
+            const result = 0 ? 'truthy' : 'falsy';
+            console.log(result);
+
+            const valid = (age > 20) ? 'Yes' : 'No';
+            console.log(valid);
+
+            // Guard operator - &&
+
+            let msg = false && 'hello'; // it will protect the other part of the code from executing if something is falsy
+            console.log(msg);
+
+            msg = 5 && 'Hi';
+            console.log(msg);
+
+            // Default operator - ||
+
+            let cur = 'INR';
+            console.log(cur || 'USD');
+
+            let money;
+            console.log(money || 'USD'); // it will provide a default value if nothing happens
+
+        </script>
+    </body>
+</html>
