@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ex2</title>
+    </head>
+    <body>
+        <script>
+            function celsiusToFahrenheit(celsius)
+            {
+                return (celsius * 9 / 5) + 32;
+            }
+
+            function fahrenheitToCelsius(fahrenheit)
+            {
+                return (fahrenheit - 32) * 5 / 9;
+            }
+
+            console.log('celsiusToFahrenheit(36.8): '+celsiusToFahrenheit(36.8));
+            console.log('fahrenheitToCelsius(104): '+fahrenheitToCelsius(104))
+
+            function convertTemperature(degrees, unit)
+            {
+                if(unit === 'C')
+                {
+                    return ((degrees * 9 / 5) + 32)+'F';
+                }
+                else if(unit === 'F')
+                {
+                    return ((degrees - 32) * 5 / 9)+'C';
+                }
+            }
+
+            console.log(convertTemperature(36, 'C'));
+            console.log(convertTemperature(98, 'F'));
+            
+        </script>
+    </body>
+</html>

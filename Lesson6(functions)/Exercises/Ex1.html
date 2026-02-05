@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Functions 1</title>
+    </head>
+    <body>
+        <script>
+            // 7a)
+            function greet1()
+            {
+                console.log('Hello!');
+            }
+            greet1();
+            greet1();
+            greet1();
+
+            // 7b) 
+            function greet2(name)
+            {
+                console.log(`Hello ${name}!`);
+            }
+
+            greet2('Dhamo');
+            greet2('Hanu');
+            greet2('Naveen');
+            greet2(); // 'Hello undefined!'
+
+            // 7c)
+            function greet3(name)
+            {
+                name = name || 'there'
+                console.log(`Hi ${name}!`);
+            }
+
+            greet3();
+            greet3('Black Squad');
+        </script>
+    </body>
+</html>

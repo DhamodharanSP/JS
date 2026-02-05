@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Functions</title>
+    </head>
+    <body>
+        <script>
+
+            // 1) Without Parameter and Without return
+            function welcome() {
+                console.log('Welcome! Have a nice day!');
+            }
+
+            // 2) Without Parameter and With return
+            function PI() {
+                return 22/7;
+            }
+
+            const piValue = PI();
+            console.log(piValue);
+
+            // 3) With Parameter and Without return
+            function friends(friend1, friend2)
+            {
+                console.log(`${friend1} and ${friend2} are friends!`);
+            }
+
+            friends('Dhamo','Naveen');
+            friends('Dhamo', 'Hanu');
+
+            // 4) With Parameter and With return
+            function add(a, b)
+            {
+                return a + b;
+            }
+
+            console.log(add(5,7));
+            console.log(add('Hi', ' Dhamo')); // Javascript doesn't check types so you need to verify if the arguments are of same data types
+
+
+            // Bonus... simple 'return;' will terminate the function and returns 'undefined'
+
+            function demo () {
+                return;
+            }
+
+            console.log(demo());
+
+            // Real time example of functions
+
+            function calculateTax(cost)
+            {
+                console.log(cost * 0.1); //10% tax
+            }
+
+            calculateTax(1000);
+
+            calculateTax(2000, 0.5); //The second parameter gets omitted
+
+            function calculateTaxAmt(cost, taxPercent)
+            {
+                console.log(`Cost: ${cost}, Tax percent: ${taxPercent}`);
+                console.log(cost * taxPercent);
+            }
+
+            calculateTaxAmt(1000, 0.1);
+            calculateTaxAmt(2000, 0.2);
+            calculateTaxAmt(5000);  // this produce 'NaN' because, only one parameter is passed. So, the other parameters get 'undefined' and performing Math operations on them results in "Not a Number" - NaN
+
+            // To overcome this, we can use default values
+
+            // 1) We can use this with default operator
+            function calculateTaxAmt2(cost, taxPercent)
+            {
+                taxPercent = taxPercent || 0.1; // default 10% tax
+                console.log(`Cost: ${cost}, Tax percent: ${taxPercent}`);
+                console.log(cost * taxPercent);
+            }
+
+            // 2) we can provide default values to parameter and this is most used
+            function calculateTaxAmt3(cost, taxPercent = 0.1 /* default 10% tax */)
+            {
+                console.log(`Cost: ${cost}, Tax percent: ${taxPercent}`);
+                console.log(cost * taxPercent);
+            }
+
+            calculateTaxAmt2(5000); //This will run without errors
+            calculateTaxAmt2(5000, .3); // This also works normally
+
+            calculateTaxAmt3(5000); 
+
+        </script>
+    </body>
+</html>

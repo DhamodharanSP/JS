@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Unit convertor</title>
+    </head>
+    <body>
+        <script>
+            function convertLength(length, from, to)
+            {
+                let val;
+                if(to === 'km')
+                {
+                    val = (from === 'km') ? 1 : (from === 'miles') ? 1.6 : (from === 'ft') ? 1/3281 : 'invalid';
+                }
+                else if(to === 'miles')
+                {
+                    val = (from === 'miles') ? 1 : (from === 'km') ? 1/1.6 : (from === 'ft') ? 1/5280 : 'invalid';
+                }
+                else if(to === 'ft')
+                {
+                    val = (from === 'ft') ? 1 : (from === 'km') ? 3281 : (from === 'miles') ? 5280 : 'invalid';
+                }
+                else val = 'invalid';
+                if(val != 'invalid') return (length * val) + to;
+                alert(`Invalid unit given`);
+            }
+
+            // to 'km'
+            console.log(convertLength(100, 'miles', 'km'));
+            console.log(convertLength(100, 'ft', 'km'));
+
+            // to 'ft'
+            console.log(convertLength(100, 'km', 'ft'));
+            console.log(convertLength(100, 'miles', 'ft'));
+
+            // to 'miles'
+            console.log(convertLength(100, 'km', 'miles'));
+            console.log(convertLength(100, 'ft', 'miles'));
+
+            // invalid
+            console.log(convertLength(1000, 'Dhamo', 7));
+        </script>
+    </body>
+</html>
