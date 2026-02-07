@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissor</title>
+    </head>
+    <body>
+        <h3>Rock Paper Scissors</h3>
+        <button onclick="
+            playGame('rock');
+        ">
+            Rock
+        </button>
+
+        <button onclick="
+            playGame('paper');
+        ">
+            Paper
+        </button>
+
+        <button onclick="
+            playGame('scissors');
+        ">
+            Scissors
+        </button>
+
+        <button onclick="
+            alert(`Win: ${score.win}, Loss: ${score.loss}, Tie: ${score.tie}`);
+        ">
+            Show results
+        </button>
+
+        <button onclick="
+            score.win = 0;
+            score.loss = 0;
+            score.tie = 0;
+            alert('Results reset successfully!');
+        ">
+            Reset
+        </button>
+        <script>
+            const score = {
+                win: 0, 
+                loss: 0,
+                tie: 0
+            }
+
+            function pickComputerMove() {
+                const random = Math.random();
+                let computerMove = '';
+                if(random >= 0 && random < 1/3)
+                    computerMove = 'rock';
+                else if(random >= 1/3 && random < 2/3)
+                    computerMove = 'paper';
+                else computerMove = 'scissors';
+                return computerMove;
+            }
+
+            function playGame(playerMove)
+            {
+                const computerMove = pickComputerMove();
+                let result;
+                if(playerMove === 'rock')
+                {
+                    if(computerMove === 'rock')
+                        result = 'tie';
+                    else if(computerMove === 'paper')
+                        result = 'loss';
+                    else
+                        result = 'win';
+                }
+                else if(playerMove === 'paper')
+                {
+                    if(computerMove === 'rock')
+                        result = 'win';
+                    else if(computerMove === 'paper')
+                        result = 'tie';
+                    else
+                        result = 'loss';
+                }
+                else
+                {
+                    if(computerMove === 'rock')
+                        result = 'loss';
+                    else if(computerMove === 'paper')
+                        result = 'win';
+                    else result = 'tie';
+                }
+
+                if(result === 'win') score.win++;
+                else if(result === 'loss') score.loss++;
+                else score.tie++;
+
+                alert(`Your move: ${playerMove} and Computer's move: ${computerMove}... You ${result}`);
+            }
+        </script>
+    </body>
+</html>
