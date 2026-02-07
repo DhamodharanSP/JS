@@ -24,7 +24,7 @@
         </button>
 
         <button onclick="
-            alert(`Win: ${score.win}, Loss: ${score.loss}, Tie: ${score.tie}`);
+            getResult();
         ">
             Show results
         </button>
@@ -33,16 +33,17 @@
             score.win = 0;
             score.loss = 0;
             score.tie = 0;
+            localStorage.removeItem('score');
             alert('Results reset successfully!');
         ">
             Reset
         </button>
         <script>
-            const score = {
+            const score = JSON.parse(localStorage.getItem('score')) || {
                 win: 0, 
                 loss: 0,
                 tie: 0
-            }
+            };
 
             function pickComputerMove() {
                 const random = Math.random();
@@ -90,7 +91,15 @@
                 else if(result === 'loss') score.loss++;
                 else score.tie++;
 
+                const value = JSON.stringify(score);
+                localStorage.setItem('score', value);
+
                 alert(`Your move: ${playerMove} and Computer's move: ${computerMove}... You ${result}`);
+            }
+
+            function getResult()
+            {
+                alert(`Win: ${score.win}, Loss: ${score.loss}, Tie: ${score.tie}`);
             }
         </script>
     </body>
