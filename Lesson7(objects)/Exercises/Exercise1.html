@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise on Objects</title>
+    </head>
+    <body>
+        <script>
+            const product1 = {
+                name: 'basketball',
+                price: 2095
+            }
+
+            const product2 = {
+                name: 'T-shirt',
+                price: 3500
+            }
+
+            const product3 = {
+                name: 'basketball',
+                price: 2145
+            }
+
+            // 8a.
+            console.log(product1);
+
+            // 8b.
+            product1.price += 50;
+            console.log(product1);
+
+            // 8c.
+            product1['delivery-time'] = '3 days';
+            console.log(product1);
+
+            // 8d.
+            function comparePrice(p1, p2)
+            {
+                return (p1.price < p2.price) ? p1 : p2;
+            }
+
+            console.log(comparePrice(product1, product2));
+
+            // 8e.
+            function isSameProduct(p1, p2)
+            {
+                return (p1.name === p2.name) && (p1.price === p2.price);
+            }
+
+            console.log(isSameProduct(product1, product2));
+            console.log(isSameProduct(product1, product3));
+
+            // 8f. string.toLowerCase()
+            const name = 'Dhamo is a Good Boy!';
+            console.log(name.toLowerCase());
+
+            // 8e. string.repeat(count)
+            const greet = 'Welcome! ';
+            console.log(greet.repeat(5));
+        </script>
+    </body>
+</html>
