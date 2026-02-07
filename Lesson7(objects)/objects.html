@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Objects</title>
+    </head>
+    <body>
+        <script>
+            // 1) syntax
+            const object = {
+                property1 : 'value1',
+                property2 : 2
+            };
+            
+            console.log(object);
+
+            console.log(object.property1);
+            console.log(object.property2);
+
+            // 2) object creation
+            const product = {
+                name: 'Laptop',
+                brand: 'Asus',
+                price: 68000,
+                stock: true
+            }
+
+            console.log(product);
+            console.log(typeof product); //object
+
+            // 3) Accessing using '.' - dot notation
+            console.log(product.name);
+
+            // 4) Modification
+            product.brand = 'Hp';
+            console.log(product.brand);
+
+            // 5) Adding new property
+            product.processor = 'Ryzen 7';
+            console.log(product);
+
+            // 6) Deleting a property
+            delete product.stock;
+            console.log(product);
+
+            // 7) We can also access values using Bracket notation
+            console.log(product['name']);
+
+            // it is used instead of 'dot notation' on places it not supported
+
+            /*
+            product.graphics-card = 'NVIDIA RTX 3050';
+            */
+            
+            product['graphics-card'] = 'NVIDIA RTX 3050';
+
+            console.log(product);
+
+            // 8) Nested objects
+
+            const product2 = {
+                name: 'Key board',
+                type: 'Accessories',
+                rating: {
+                    star: 4.7,
+                    count: 455
+                },
+                // we can also use functions as values -> Function inside object = 'Method'
+                stats: function showDetails() {
+                    console.log(`${product2.name}, ratings: ${product2.rating.star} and count ${product2.rating.count}`)
+                }
+            }
+
+            console.log(product2);
+
+            // 9) Accessing values
+
+            const star1 = product2.rating.star;
+            const star2 = product2['rating']['star'];
+            console.log(star1 +" " + star2);
+
+            // 10) Functions as values / Methods
+            product2.stats();
+
+            //Realtime example
+            const consoleType = typeof console;
+            const logType = typeof console.log;
+            console.log(`${consoleType}, ${logType}`);
+
+
+            // 11) Built-In objects
+            // console, Math, JSON, localStorage, ...
+
+            // 12) JSON object
+
+            // JSON.stringify() converts JavaScript objects into JSON objects
+            const json = JSON.stringify(product2);
+            console.log(json);
+            
+            // return typeof JSON.stringify is string
+            console.log(typeof json);
+
+
+            // JSON.parse() converts JSON objects into JavaScript objects
+            const js = JSON.parse(json);
+            console.log(js); // typeof js > object
+
+            // 13) localStorage object
+
+            // Used to store values locally in browser preventing resetting of values due to page reload
+
+            localStorage.setItem('name', 'Dhamo'); //It only supports string
+
+            const name = localStorage.getItem('name');
+
+            console.log(name);
+
+            // 14) AutoBoxing: string, number, boolean properties & methods
+
+            console.log('Dhamo'.length);
+            console.log('Dhamo'.toUpperCase());
+            console.log(9.0.toString());
+            console.log(true.toString());
+
+            // 15) objects are references
+            const obj1 = {
+                name: 'Dhamo'
+            }
+            console.log(obj1);
+
+            const obj2 = obj1; // it only copies the reference of obj1 and both point to same memory
+            obj2.age = 21;
+
+            console.log(obj2);
+
+            obj1 === obj2 && console.log('Same Reference');
+
+            const obj3 = {
+                name: 'Dhamo',
+                age: 21
+            };
+
+            (obj1 === obj3) ? console.log('Same') : console.log('Not Same');  // we can't use '===' for checking if both objects contain same data and it only checks references
+
+
+            // 16) Destructuring
+
+            const item = {
+                id: 1,
+                itemName: 'Mobile',
+                brand: 'Apple',
+                quantity: 10
+            }
+
+            /*
+            const itemName = item.itemName; // same variable as well as property name
+            */
+            // the above can be written as,
+
+            const { itemName } = item;
+            console.log(itemName);
+
+            // we can also use multiple values same as specific object
+            
+            const { id, brand, quantity } = item;
+
+            console.log(`${id}, ${brand}, ${quantity}`);
+
+            const { price } = item;
+
+            console.log(price); // undefined
+
+            // Shortcut properties
+
+            /*
+            const item2 = {
+                brand: brand // same property name and variable name as value
+            }
+            */
+
+            const item2 = {
+                brand // shorthand property
+            }
+
+            console.log(item2);
+
+            // Shorthand Method
+
+            const item3 = {
+                itemName: 'Calculator',
+
+                /*
+                add: function addition(a, b)
+                {
+                    return a+b;
+                }
+                */
+                add(a,b)
+                {
+                    return a+b;
+                }
+            }
+
+            console.log(item3.add(10,15));
+
+        </script>
+    </body>
+</html>
