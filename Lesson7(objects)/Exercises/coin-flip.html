@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Coin Flip Game</title>
+        <style>
+            body {
+                background-color: rgb(10,10,10);
+            }
+            .coin {
+                margin: 5px;
+                padding: 20px 20px;
+                border: none;
+                border-radius: 50%;
+                background-color: rgb(238, 185, 62);
+                font-weight: bold;
+                box-shadow: 0 0 5px rgba(255,255,255);
+                cursor: pointer;
+            }
+
+            .btn {
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                background-color: white;
+                box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            }
+        </style>
+    </head>
+    <body>
+        <button class="coin" onclick="
+            playGame('head');
+        ">
+            Head
+        </button>
+        <button class="coin" onclick="
+            playGame('tail');
+        ">
+            Tail
+        </button>
+        <br>
+        <button class="btn" onclick="
+            showResult();
+        ">
+            Show Results
+        </button>
+        <button class="btn" onclick="
+            score.win = 0;
+            score.loss = 0;
+            localStorage.removeItem('result');
+            alert('Score resetted!');
+        ">
+            Reset
+        </button>
+        <script>
+            const score = JSON.parse(localStorage.getItem('result')) || {
+                win: 0,
+                loss: 0
+            };
+
+            function playGame(guess)
+            {
+                const random = Math.random();
+                const coin = (random <= 0.5) ? 'head' : 'tail';
+                let status;
+                if(guess === coin)
+                { 
+                    status = 'win';
+                    score.win++;
+                }
+                else
+                {
+                    status = 'loss';
+                    score.loss++;
+                }
+                const result = JSON.stringify(score);
+                localStorage.setItem('result', result);
+                alert(`Your Guess: ${guess}, Coin: ${coin}. You ${status}!`);
+            }
+
+            function showResult()
+            {
+                alert(`Win: ${score.win}, Loss: ${score.loss}`);
+            }
+        </script>
+    </body>
+</html>
