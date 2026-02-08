@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Greet</title>
+    </head>
+    <body>
+        <input type="text" class="user-input" placeholder="Enter your name" onkeydown="
+            handleKey(event);
+        ">
+        <button onclick="
+            greet();
+        ">
+            Submit
+        </button>
+
+        <p class="welcome"></p>
+
+        <script>
+            function greet()
+            {
+                const user = document.querySelector('.user-input');
+                const name = user.value;
+                const welcome = document.querySelector('.welcome');
+                welcome.innerHTML = `Welcome ${name}! How are you?`;
+            }
+
+            function handleKey(event)
+            {
+                if(event.key === 'Enter')
+                    greet();
+            }
+        </script>
+    </body>
+</html>
