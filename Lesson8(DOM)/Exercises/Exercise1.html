@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 1</title>
+    </head>
+    <body>
+        <h3>9a.</h3>
+
+        <button class="E9a" onclick="
+            const btn = document.querySelector('.E9a');
+            console.log(btn);
+        ">
+            Click
+        </button>
+
+        <h3>9b.</h3>
+
+        <button class="E9b" onclick="
+            const btn = document.querySelector('.E9b');
+            if(btn.innerText === '9b')
+                btn.innerHTML += ' done!';
+            else btn.innerHTML = '9b';
+        ">
+            9b
+        </button>
+
+        <h3>9c.</h3>
+
+        <button onclick="
+            makeChoice('head');
+        ">
+            Heads
+        </button>
+        <button onclick="
+            makeChoice('tail');
+        ">
+            Tails
+        </button>
+        
+        <p class="result"></p>
+
+        <script>
+            function makeChoice(choice)
+            {
+                const result = document.querySelector('.result');
+                result.innerHTML = `You chose: ${choice}`;
+            }
+        </script>
+    </body>
+</html>
