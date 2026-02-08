@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Keyboard Type</title>
+    </head>
+    <body>
+        <input class="js-input" onkeyup="
+            typing();
+        ">
+        <p class="result"></p>
+        <script>
+            function typing()
+            {
+                const input = document.querySelector('.js-input');
+                const value = input.value;
+                const result = document.querySelector('.result');
+                result.innerHTML = value;
+            }
+        </script>
+    </body>
+</html>
