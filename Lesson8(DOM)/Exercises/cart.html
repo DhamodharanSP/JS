@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Cart</title>
+        <style>
+            button {
+                padding: 5px 10px;
+                border: none;
+                border-radius: 10px;
+                margin: 0 10px;
+                box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+                cursor: pointer;
+            }
+            .add {
+                background-color: orange;
+            }
+            .remove {
+                background-color: lightpink;
+            }
+            .js-quantity {
+                padding-left: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Cart Quantity</h3>
+        <button class="add" onclick="
+            updateCart(1)
+        ">
+            Add to Cart
+        </button>
+        <button class="add" onclick="
+            updateCart(2);
+        ">
+            +2
+        </button>
+        <button class="add" onclick="
+            updateCart(3);
+        ">
+            +3
+        </button>
+
+        <button class="remove" onclick="
+            updateCart(-1);
+        ">
+            Remove from Cart
+        </button>
+
+        <button class="remove" onclick="
+            updateCart(-2);
+        ">
+            -2
+        </button>
+
+        <button class="remove" onclick="
+            updateCart(-3);
+        ">
+            -3
+        </button>
+
+        <p class="js-quantity">Cart Quantity: 0</p>
+
+        <button onclick="
+            resetCart();
+        ">
+            Reset Cart
+        </button>
+        <script>
+            let cartQuantity = 0;
+            
+            function updateCart(quantity)
+            {
+                if(cartQuantity + quantity > 10)
+                {
+                    alert('The Cart will overflow!');
+                    return;
+                }
+                else if(cartQuantity + quantity < 0)
+                {
+                    alert('No Item to remove!');
+                    return;
+                }
+                cartQuantity += quantity;
+                showQuantity(cartQuantity);
+                if(quantity > 0) 
+                    console.log(`${quantity} Item added!`);
+                else console.log(`${quantity * -1} Item removed!`);
+            }
+
+            function resetCart()
+            {
+                cartQuantity = 0;
+                showQuantity(cartQuantity);
+                console.log('Cart Emptied...')
+            }
+
+            function showQuantity(cartQuantity)
+            {
+                const result = document.querySelector('.js-quantity');
+                result.innerHTML = `Cart Quantity: ${cartQuantity}`;
+            }
+        </script>
+    </body>
+</html>
