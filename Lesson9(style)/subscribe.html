@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Youtube Subscribe Button</title>
+        <style>
+            body {
+                font-family: Arial;
+            }
+
+            .subscribe {
+                background-color: black;
+                color: white;
+                font-weight: bold;
+                border: none;
+                padding: 10px 14px;
+                border-radius: 30px;
+                box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            }
+
+            .subscribed {
+                background-color: rgb(240, 240, 240);
+                color: black;
+            }
+        </style>
+    </head>
+    <body>
+        <p>YouTube Subscribe Button</p>
+        <button class="subscribe" onclick="
+            subscribe();
+        ">
+            Subscribe
+        </button>
+        <script>
+            function subscribe()
+            {
+                const btn = document.querySelector('.subscribe');
+                if(btn.innerText === 'Subscribe')
+                {
+                    btn.innerHTML = 'Subscribed';
+                    btn.classList.add('subscribed'); // used for adding a class to current class list
+                }
+                else 
+                {
+                    btn.innerHTML = 'Subscribe';
+                    btn.classList.remove('subscribed'); // used for removing a class from current class list
+                }
+            }
+        </script>
+    </body>
+</html>
