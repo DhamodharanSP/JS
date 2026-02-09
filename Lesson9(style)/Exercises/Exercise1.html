@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 1</title>
+        <style>
+            .add {
+                padding: 10px 30px;
+                border: none;
+                background-color: rgb(255, 210, 20);
+                border-radius: 20px;
+                font-weight: bold;
+            }
+
+            .request, .schedule{
+                border: none;
+                border-radius: 5px;
+                padding: 10px 15px;
+                margin-right: 20px;
+            }
+            .request {
+                background-color: black;
+                color: white;
+            }
+            .schedule {
+                background-color: rgb(230, 230, 230);
+                font-weight: bold;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>10a. Amazon button</h3>
+        <button class="add">
+            Add to Cart
+        </button>
+
+        <h3>10b. Uber buttons</h3>
+        <button class="request">
+            Request now
+        </button>
+        <button class="schedule">
+            Schedule for later
+        </button>
+
+        <h3>10c.</h3>
+        <button class="js-button">
+            Test
+        </button>
+
+        <script>
+            const test = document.querySelector('.js-button');
+            console.log(test.classList.contains('js-button'));
+        </script>
+    </body>
+</html>
