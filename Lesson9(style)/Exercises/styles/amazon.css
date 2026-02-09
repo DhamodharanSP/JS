@@ -1,0 +1,14 @@
+.input-value {
+    padding: 10px;
+}
+.calculate {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 15px;
+    cursor: pointer;
+}
+.invalid {
+    color: red;
+}
