@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissor</title>
+        <style>
+            body {
+                background-color: rgb(20,20,20);
+                color: white;
+                font-family: Arial;
+            }
+
+            .title {
+                font-size: 30px;
+                font-weight: bold;
+            }
+
+            .move {
+                font-size: 60px;
+                background-color: transparent;
+                border: 3px solid white;
+                padding: 15px 16px;
+                padding-bottom: 20px;
+                border-radius: 50%;
+                margin-right: 10px;
+                cursor: pointer;
+            }
+
+            .reset {
+                padding: 10px 20px;
+                border: 2px solid white;
+                color: white;
+                background-color: transparent;
+                border-radius: 20px;
+                box-shadow: 0 0 5px white inset;
+                cursor: pointer;
+            }
+
+            .reset:active {
+                background-color: white;
+                color: black;
+                font-weight: bold;
+                box-shadow: 0 0 5px white;
+            }
+
+            .status {
+                font-size: 24px;
+                font-weight: bold;
+                color: white;
+            }
+
+            .cur-move, .score {
+                font-size: 20px;
+                font-weight: bold;
+                color: white;
+            }
+
+            .icon {
+                font-size: 60px;
+            }
+        </style>
+    </head>
+    <body>
+        <p class="title">Rock Paper Scissors</p>
+        <button class="move" onclick="
+            playGame('✊');
+        ">
+            ✊
+        </button>
+
+        <button class="move" onclick="
+            playGame('🖐️');
+        ">
+            🖐️
+        </button>
+
+        <button class="move" onclick="
+            playGame('✌️');
+        ">
+            ✌️
+        </button>
+
+        <p class="status"></p>
+        <p class="cur-move"></p>
+        <p class="score"></p>
+
+        <button class="reset" onclick="
+            resetScore();
+        ">
+            Reset
+        </button>
+        
+        <script>
+            const score = JSON.parse(localStorage.getItem('score')) || {
+                win: 0, 
+                loss: 0,
+                tie: 0
+            };
+
+            updateScore();
+
+            function pickComputerMove() {
+                const random = Math.random();
+                let computerMove = '';
+                if(random >= 0 && random < 1/3)
+                    computerMove = '✊';
+                else if(random >= 1/3 && random < 2/3)
+                    computerMove = '🖐️';
+                else computerMove = '✌️';
+                return computerMove;
+            }
+
+            function playGame(playerMove)
+            {
+                const computerMove = pickComputerMove();
+                let result;
+                if(playerMove === '✊')
+                {
+                    if(computerMove === '✊')
+                        result = 'tie';
+                    else if(computerMove === '🖐️')
+                        result = 'loss';
+                    else
+                        result = 'win';
+                }
+                else if(playerMove === '🖐️')
+                {
+                    if(computerMove === '✊')
+                        result = 'win';
+                    else if(computerMove === '🖐️')
+                        result = 'tie';
+                    else
+                        result = 'loss';
+                }
+                else
+                {
+                    if(computerMove === '✊')
+                        result = 'loss';
+                    else if(computerMove === '🖐️')
+                        result = 'win';
+                    else result = 'tie';
+                }
+
+                if(result === 'win') score.win++;
+                else if(result === 'loss') score.loss++;
+                else score.tie++;
+
+                const value = JSON.stringify(score);
+                localStorage.setItem('score', value);
+
+                displayMove(playerMove, computerMove);
+                displayStatus(result);
+                updateScore();
+            }
+
+            function resetScore()
+            {
+                score.win = 0;
+                score.loss = 0;
+                score.tie = 0;
+                localStorage.removeItem('score');
+
+                updateScore();
+
+                alert('Results reset successfully!');
+            }
+
+            function updateScore()
+            {
+                const scoreCard = document.querySelector('.score');
+                scoreCard.innerHTML = `Win: ${score.win}, Loss: ${score.loss}, Tie: ${score.tie}`;
+            }
+
+            function displayMove(playerMove, computerMove)
+            {
+                const move = document.querySelector('.cur-move');
+                move.innerHTML = `You <span class="icon">${playerMove}</span> <span class="icon">${computerMove}</span> Computer`;
+            }
+
+            function displayStatus(result)
+            {
+                const status = document.querySelector('.status');
+                status.innerHTML = `You ${result}!`;
+            }
+            
+        </script>
+    </body>
+</html>
