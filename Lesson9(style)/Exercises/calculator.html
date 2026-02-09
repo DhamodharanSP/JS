@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Calculator</title>
+        <link rel="stylesheet" href="styles/calculator.css">
+    </head>
+    <body>
+        <div class="type"></div>
+        <div class="container">
+            <button class="btn" onclick="
+                updateCalculation('1');
+            ">
+                1
+            </button>
+            <button class="btn" onclick="
+                updateCalculation('2');
+            ">
+                2
+            </button>
+            <button class="btn" onclick="
+                updateCalculation('3');
+            ">
+                3
+            </button>
+            <button class="btn opt" onclick="
+                updateCalculation(' + ');
+            ">
+                +
+            </button>
+
+            <button class="btn" onclick="
+                updateCalculation('4');
+            ">
+                4
+            </button>
+            <button class="btn" onclick="
+                updateCalculation('5');
+            ">
+                5
+            </button>
+            <button class="btn" onclick="
+                updateCalculation('6');
+            ">
+                6
+            </button>
+            <button class="btn opt" onclick="
+                updateCalculation(' - ');
+            ">
+                -
+            </button>
+
+            <button class="btn" onclick="
+                updateCalculation('7');
+            ">
+                7
+            </button>
+            <button class="btn" onclick="
+                updateCalculation('8');
+            ">
+                8
+            </button>
+            <button class="btn" onclick="
+                updateCalculation('9');
+            ">
+                9
+            </button>
+            <button class="btn opt" onclick="
+                updateCalculation(' * ');
+            ">
+                x
+            </button>
+
+            <button class="btn" onclick="
+                updateCalculation('0');
+            ">
+                0
+            </button>
+            <button class="btn" onclick="
+                updateCalculation('.');
+            ">
+                .
+            </button>
+            <button class="btn" onclick="
+                calculateResult();
+            ">
+                =
+            </button>
+            <button class="btn opt" onclick="
+                updateCalculation(' / ');
+            ">
+                /
+            </button>
+
+            <button class="btn opt" onclick="
+                updateCalculation('(');
+            ">
+                (
+            </button>
+            <button class="btn opt" onclick="
+                updateCalculation(')');
+            ">
+                )
+            </button>
+            <button class="btn opt" onclick="
+                deleteOne();
+            ">
+                del
+            </button>
+            <button class="btn opt" onclick="
+                clearResult();
+            ">
+                AC
+            </button>
+        </div>
+        <script src="script/calculator.js"></script>
+    </body>
+</html>

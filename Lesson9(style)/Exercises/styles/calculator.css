@@ -1,0 +1,32 @@
+body {
+    background-color: black;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 80px 80px 80px 80px;
+    gap: 5px;
+}
+
+.btn {
+    padding: 22px 10px;
+    border-radius: 50%;
+    font-size: 20px;
+    margin: 5px;
+    color: white;
+    background-color: rgb(100,100,100);
+    border: none;
+    cursor: pointer;
+}
+
+.opt {
+    background-color: orange;
+}
+
+.type {
+    width: 320px;
+    text-align: right;
+    color: orange;
+    font-size: 40px;
+    font-family: Verdana;
+}
