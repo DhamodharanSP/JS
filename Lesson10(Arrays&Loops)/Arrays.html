@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arrays & Loops</title>
+    </head>
+    <body>
+
+        <script>
+            const nums = [1,2,3]; 
+            console.log(nums);
+            console.log(typeof nums);
+
+            // Accessing
+            console.log(nums[0]);
+
+            // Modifying
+            nums[0] = 100;
+            console.log(nums[0]);
+
+            // We can declare arrays like,
+
+            const array = [
+                1, // number
+                'Dhamo', // string
+                true, // boolean
+                {
+                    age: 18,
+                    gender: 'male'
+                }, // objects
+                [1, 2, 3] // array
+            ];
+
+            console.log(array);
+
+            // Array methods
+            const isArray = Array.isArray(array);
+            console.log(isArray);
+
+            // .length
+            console.log(array.length);
+
+            // .push(value)
+            array.push(100);
+            console.log(array);
+
+            // .splice(start index, count of elements to remove)
+            array.splice(1, 2);
+            console.log(array);
+
+        </script>
+    </body>
+</html>
