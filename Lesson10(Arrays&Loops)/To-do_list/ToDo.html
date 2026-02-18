@@ -2,19 +2,22 @@
 <html>
     <head>
         <title>To do list</title>
+        <link rel="stylesheet" href = 'styles/todo.css'>
     </head>
     <body>
         <p>To Do list</p>
 
-        <input type="text" placeholder="To do name" class="todo-input">
+        <div class="todo-input-container">
+            <input type="text" placeholder="To do name" class="todo-input event">
 
-        <input type="date" class="todo-date">
+            <input type="date" class="todo-date date">
 
-        <button onclick="
-            addList();
-        ">
-            Add
-        </button>
+            <button onclick="
+                addList();
+            " class="todo-add">
+                Add
+            </button>
+        </div>
 
         <div class="todo-items"></div>
 

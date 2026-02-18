@@ -10,9 +10,8 @@ function addList()
 
     todoList.push({ event, date});
 
-    console.log(todoList);
-
     todoValue.value = '';
+    todoDate.value = '';
 
     renderToDoList(); // displaying todo list on page
 }
@@ -26,16 +25,18 @@ function renderToDoList()
         const todoEvent = todoList[i];
         const { event, date} = todoEvent;
         const html = `
-            <p>
+            <div>
                 ${event}
+            </div>
+            <div>
                 ${date}
-                <button onclick="
-                    todoList.splice(${i},1);
-                    renderToDoList();
-                ">
-                    Delete
-                </button>
-            </p>
+            </div>
+            <button onclick="
+                todoList.splice(${i},1);
+                renderToDoList();
+            " class="todo-delete">
+                Delete
+            </button>
         `; 
         todoListHTML += html;
     }
