@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Arrays 2</title>
+    </head>
+    <body>
+        <script>
+            // 1) Arrays are references
+            const array1 = [1,2,3];
+            const array2 = array1;
+            console.log(`${array1} : ${array2}`);
+
+            array1.push(4);
+
+            console.log(`${array1} : ${array2}`);
+
+            // 2) array.slice()
+            const array3 = [4,5,6];
+            const array4 = array3.slice();
+
+            console.log(`${array3} : ${array4}`);
+
+            array3.push(7);
+
+            console.log(`${array3} : ${array4}`);
+
+            // 3) Array destructuring
+
+            const [ first, second ] = array4;
+            console.log(first+second);
+
+
+            // 4) break
+            for(let i = 1; i < 10; ++i)
+            {
+                if(i == 6) break;
+                console.log(i);
+            }
+
+            // 5) continue
+            for(let i = 1; i < 10; ++i)
+            {
+                if(i%3 == 0) continue;
+                console.log(i);
+            }
+
+            // continue in while
+            console.log('In while...');
+            let i = 1;
+            while(i < 10)
+            {
+                if(i%3 == 0) 
+                {
+                    i++; // if we didn't increment the values before continue, then the loop will run forever with same value and continue infinitely
+                    continue;
+                }  
+                console.log(i);
+                i++;
+            }
+
+            // 6) Arrays with functions
+
+            function doubleValues(nums)
+            {
+                const double = [];
+                for(let i = 0; i < nums.length; ++i)
+                {
+                    let num = nums[i] * 2;
+                    if(num == 0) return double;
+                    double.push(num);
+                }
+                return double;
+            }
+
+            console.log(doubleValues([2, 5, 7]));
+            console.log(doubleValues([3, 6, 9]));
+
+            console.log(doubleValues([4, 2, 9, 0, 6, 1]));
+        </script>
+    </body>
+</html>
