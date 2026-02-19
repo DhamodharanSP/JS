@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Advanced Functions</title>
+    </head>
+    <body>
+        <script>
+            // 1) Functions are values
+
+            const welcome = function greet() {
+                console.log('Welcome');
+            };
+
+            console.log(welcome);
+            console.log(typeof welcome);
+
+            welcome(); // function call using variable
+
+            // 2) Anonymous function
+            const welcome1 = function () {
+                console.log('Welcome 1');
+            }
+
+            welcome1();
+
+            // 3) In objects
+
+            const object1 = {
+                num: 2,
+                func: function () {
+                    console.log('Function inside object is called a Method');
+                }
+            }
+
+            object1.func();
+
+            // 4) Passing a function into another function
+
+            function function1(function2)
+            {
+                console.log('Function 1');
+                function2();
+            }
+
+            function1(function () {
+                console.log('Function 2'); // Callback function / Callback - function as argument
+            }); // Passing function as argument
+
+            // real-time example
+
+            // setTimeOut(code, timeout);
+            const timeout = 5000; // 5 sec
+            setTimeout(function() {
+                console.log(`${timeout/1000} second timeout.`);
+            }, timeout);
+
+            // Asynchronous code - it won't wait for a line to finish before going to the next line
+            console.log('Code after timeout...'); // it'll execute before the setTimeOut() executes...
+
+            // setInterval(code, timeInterval)
+            let count = 1;
+            setInterval(function () {
+                console.log(`${count++} in setInterval`);
+            }, 3000); // it is also an asynchronous method
+
+            console.log('Code after setInterval');
+
+        </script>
+    </body>
+</html>
