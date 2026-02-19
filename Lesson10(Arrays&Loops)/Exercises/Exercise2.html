@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercise 2</title>
+    </head>
+    <body>
+        <script>
+            function search(words, target)
+            {
+                for(let i = 0; i < words.length; ++i)
+                {
+                    if(words[i] === target)
+                        return i;
+                }
+                return -1;
+            }
+
+            const a = ['Hello', 'world', 'Hi', 'Dhamo', 'Hanu'];
+
+            // 11o., 11p., 11q. Find the target and return its index or -1 if not found
+            console.log(search(a, 'Dhamo'));
+            console.log(search(a, 'Naveen'));
+
+            // 11r. Remove target
+
+            function removeWeed(plants)
+            {
+                const goodPlants = [];
+                for(let i = 0; i < plants.length; ++i)
+                {
+                    if(plants[i].toLowerCase() !== 'weed')
+                        goodPlants.push(plants[i]);
+                }
+                return goodPlants;
+            }
+
+            const plant1 = ['Rice','wheat','weed','Barley','Millet','Weed'];
+
+            console.log(removeWeed(plant1));
+
+            // 11s. Remove first 'n' targets
+            
+            function removeFirstNweed(plants, n)
+            {
+                const goodPlants = [];
+                for(let i = 0; i < plants.length; ++i)
+                {
+                    if(plants[i].toLowerCase() !== 'weed')
+                        goodPlants.push(plants[i]);
+                    else 
+                    {
+                        n--;
+                        if(n < 0) goodPlants.push(plants[i]);
+                    }
+                }
+                return goodPlants;
+            }
+
+            const plant2 = ['Rice','wheat','weed','Barley','Millet','Weed', 'tomato', 'potato', 'weed', 'onion'];
+
+            console.log(removeFirstNweed(plant2, 2));
+
+            // 11t. Remove last 'n' targets
+
+            function removeLastNweed(plants, n)
+            {
+                const goodPlants = [];
+                const plantCopy = plants.slice(); // 11u. to preserve order of original array
+                plantCopy.reverse();
+                for(let i = 0; i < plantCopy.length; ++i)
+                {
+                    if(plantCopy[i].toLowerCase() !== 'weed')
+                        goodPlants.push(plantCopy[i]);
+                    else 
+                    {
+                        n--;
+                        if(n < 0) goodPlants.push(plantCopy[i]);
+                    }
+                }
+                return goodPlants.reverse();
+            }
+
+            const plant3 = ['Rice','wheat','weed','Barley','Millet','Weed', 'tomato', 'potato', 'weed', 'onion'];
+
+            console.log(removeLastNweed(plant3, 2));
+
+            // 11u.
+            console.log(plant3);
+
+        </script>
+    </body>
+</html>
