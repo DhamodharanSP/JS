@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Challenge exercise</title>
+    </head>
+    <body>
+        <script>
+            // 11v. FizzBuzz
+
+            function fizzBuzz(st, end)
+            {
+                for(let num = st; num <= end; ++num)
+                {
+                    let res = '';
+                    if(num%3 === 0) res += 'Fizz';
+                    if(num%5 === 0) res += 'Buzz';
+                    if(num%3 !== 0 && num%5 !== 0 ) res = num;
+                    console.log(res);
+                }
+            }
+
+            fizzBuzz(1, 30);
+
+            // 11w.
+            function contains(result, value)
+            {
+                for(let i = 0; i < result.length; ++i)
+                {
+                    if(result[i] === value)
+                        return true;
+                }
+                return false;
+            }
+
+            function unique(array)
+            {
+                const result = [];
+                for(let i = 0; i < array.length; ++i)
+                {
+                    if(!contains(result, array[i]))
+                        result.push(array[i]);
+                }
+                return result;
+            }
+
+            function makeUnique(array)
+            {
+                const unique = [];
+                for(let i = 0; i < array.length; ++i)
+                {
+                    if(!unique.includes(array[i]))  // inbuilt function - array.includes(value)
+                        unique.push(array[i]);
+                }
+                return unique;
+            }
+
+            const a = ['red','green','blue','red','yellow','green'];
+
+            console.log(unique(a)); // custom function
+
+            console.log(makeUnique(a)); // inbuilt function
+        </script>
+    </body>
+</html>
