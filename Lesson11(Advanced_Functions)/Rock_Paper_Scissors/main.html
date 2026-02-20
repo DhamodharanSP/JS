@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissor</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <p class="title">Rock Paper Scissors</p>
+        <button class="move" onclick="
+            playGame('✊');
+        ">
+            ✊
+        </button>
+
+        <button class="move" onclick="
+            playGame('🖐️');
+        ">
+            🖐️
+        </button>
+
+        <button class="move" onclick="
+            playGame('✌️');
+        ">
+            ✌️
+        </button>
+
+        <p class="status"></p>
+        <p class="cur-move"></p>
+        <p class="score"></p>
+
+        <button class="reset" onclick="
+            resetScore();
+        ">
+            Reset
+        </button>
+
+        <button class="auto-play" onclick="
+            autoplay();
+        ">
+            Auto play
+        </button>
+        
+        <script src="script.js"></script>
+    </body>
+</html>
