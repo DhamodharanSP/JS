@@ -8,13 +8,26 @@
             // 1) forEach() loop
             const nums = [1,2,3,4,5];
 
+            // .forEach() expects each element as parameter
+
             nums.forEach( function (num) {
                 console.log(num);
             })
 
+            // .forEach() can also expects value along with specific index
+
             nums.forEach( function (num, index) {
                 console.log(index+" : "+num);
             })
+
+            // 2) for 'continue', we can use return to terminate the process for particular conditions on element
+
+            nums.forEach( function (num) {
+                if(num % 2 == 0) return;
+                console.log(num);
+            })
+
+            // 3) for 'break', it is complex in .forEach()... so, it's better to use regular 'for loop'
         </script>
     </body>
 </html>
