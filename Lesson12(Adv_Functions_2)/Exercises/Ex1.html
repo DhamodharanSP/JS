@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exercises</title>
+    </head>
+    <body>
+        <h3>12c</h3>
+        <button class="start-btn" onclick="
+            toggle();
+        ">
+            Start
+        </button>
+
+        <h3>12d</h3>
+
+        <button class="load-btn" onclick="
+            loading();
+        ">
+            Start
+        </button>
+
+        <h3>12e</h3>
+
+        <button onclick="
+            addToCart();
+        ">
+            Add to cart
+        </button>
+        <p class="add-info"></p>
+
+        <h3>12f</h3>
+
+        <button onclick="
+            addToCart2();
+        ">
+            Add to cart
+        </button>
+
+        <p class="add-info2"></p>
+
+        <script>
+            // 12a.
+            const add = function (a,b) {
+                if(a && b) console.log(a+b);
+                else console.log('Enter a valid number');
+            }
+
+            add(5, 10);
+            add(8, 32);
+
+            // 12b.
+            function runNtimes(func, n)
+            {
+                while(n-- > 0)
+                {
+                    func();
+                }
+            }
+
+            runNtimes( function () {
+                console.log('Hi...')
+            }, 3);
+
+            runNtimes(add, 2);
+
+            // 12c.
+
+            function toggle()
+            {                
+                setTimeout( function () {
+                    const btn = document.querySelector('.start-btn');
+                    if(btn.innerText === 'Start') btn.innerText = 'Finished!';
+                    else btn.innerText = 'Start';
+                }, 2000)
+            }
+
+            // 12d.
+
+            function loading() 
+            {
+                const btn = document.querySelector('.load-btn');
+                btn.innerText = 'Loading...';
+                setTimeout( function () {
+                    btn.innerText = 'Finished!';
+                }, 3000);
+            }
+
+            // 12e.
+
+            function addToCart()
+            {
+                const info = document.querySelector('.add-info');
+                info.innerText = 'Added';
+                setTimeout( function() {
+                    info.innerText = '';
+                }, 2000);
+            }
+
+            // 12f.
+
+            let timeoutID;
+
+            function addToCart2()
+            {
+                const info = document.querySelector('.add-info2');
+                info.innerText = 'Added';
+                clearTimeout(timeoutID);
+                timeoutID = setTimeout( function () {
+                    info.innerText = '';
+                }, 3000);
+            }
+
+
+        </script>
+    </body>
+</html>

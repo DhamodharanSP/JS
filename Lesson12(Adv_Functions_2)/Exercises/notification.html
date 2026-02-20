@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title class="title-name">App</title>
+    </head>
+    <body>
+
+        <button onclick="
+            update(1);
+            pushNotification();
+        ">
+            Add
+        </button>
+
+        <button onclick="
+            update(-1);
+            pushNotification();
+        ">
+            Remove
+        </button>
+        <script>
+            let message = 0;
+            
+            function update(n)
+            {
+                if(message + n >= 0) message += n;
+            }
+
+            let intervalID;
+            let isNotifying = false;
+
+            function pushNotification()
+            {
+                if(message === 0) stopNotification();
+                else 
+                {
+                    if(!isNotifying)
+                    {
+                        intervalID = setInterval( function () {
+                            if(document.title === 'App')
+                                document.title = `(${message}) messages`;
+                            else document.title = 'App';
+                        }, 1000);
+                        isNotifying = true;
+                    }
+                }
+            }
+
+            function stopNotification()
+            {
+                clearInterval(intervalID);
+                document.title = 'App';
+                isNotifying = false;
+            }
+
+        </script>
+    </body>
+</html>
