@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Todo list App</title>
+        <link rel="stylesheet" href="styles/todo.css">
+    </head>
+    <body>
+
+        <h3>To Do List</h3>
+
+        <div class="input-container">
+            <input type="text" placeholder="To Do name" class="todo-input todo-input-js">
+
+            <input type="date" class="todo-date todo-date-js">
+
+            <button class="todo-add" onclick="
+                addEvent();
+            ">
+                Add
+            </button>
+        </div>
+
+        <div class="todo-list"></div>
+
+        <script src="scripts/todo.js"></script>
+    </body>
+</html>
