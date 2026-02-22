@@ -28,6 +28,56 @@
             })
 
             // 3) for 'break', it is complex in .forEach()... so, it's better to use regular 'for loop'
+
+            // 4) .filter((value, index) => {...}) - it will return boolean and if it's true then the element will be included and if false, then element will be excluded
+
+            console.log([1,2,3].filter(() => true));
+
+            console.log([1,2,3].filter(() => false));
+
+            const array = [3, -2, 5, -4, 1];
+
+            // Ignore negatives
+            const positive = array.filter( (value) => {
+                return value >= 0;
+            });
+
+            console.log(positive);
+
+            // 5) .map((value, index) => {...}) - it will apply functions on each values in the original array and returns a new array
+
+            const values = [1,2,3,4];
+
+            // double values
+
+            const double = values.map( (value) => {
+                return value*2;
+            });
+
+            console.log(double);
+
+            // optimization
+            const triple = values.map((value) => value*3);
+
+            console.log(triple);
+
+            // 6) Closure
+            // - If a function has access to a value, then it will always have access to that value
+            // - value gets packed together (enclosed) with the function
+
+            const num1 = [10, 20, 30, 40];
+
+            nums.forEach((value, index) => {
+                console.log(index+" : "+value);
+            });
+
+            // we can't use variables outside the functions
+
+            // Uncaught ReferenceError: value is not defined
+            console.log(value);
+
+            // Uncaught ReferenceError: index is not defined
+            console.log(index);
         </script>
     </body>
 </html>
