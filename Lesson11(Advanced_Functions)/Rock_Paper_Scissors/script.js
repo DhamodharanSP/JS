@@ -34,6 +34,16 @@ auto_play.addEventListener('click', () => {
     autoplay();
 })
 
+// Keyboard event added
+document.body.addEventListener('keydown', (event) => {
+    let move;
+    if(event.key === 'r') move = '✊';
+    else if(event.key === 'p') move = '🖐️';
+    else if(event.key === 's') move = '✌️';
+    else return;
+    playGame(move);
+})
+
 function pickComputerMove() {
     const random = Math.random();
     let computerMove = '';
