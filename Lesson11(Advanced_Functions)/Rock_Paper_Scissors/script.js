@@ -82,7 +82,7 @@ function autoplay()
     if(!isAutoPlay)
     {
         isAutoPlay = true;
-        intervalID = setInterval(function () {
+        intervalID = setInterval( () => {
             const playerMove = pickComputerMove();
             playGame(playerMove);
         }, 2000); // setInterval() performs actions continuously with defined interval breaks and it returns an ID
