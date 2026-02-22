@@ -6,6 +6,34 @@ const score = JSON.parse(localStorage.getItem('score')) || {
 
 updateScore();
 
+// Event listeners
+
+const rock = document.querySelector('.rock-btn');
+rock.addEventListener('click', () => {
+    playGame('✊');
+})
+
+const paper = document.querySelector('.paper-btn');
+paper.addEventListener('click', () => {
+    playGame('🖐️');
+})
+
+const scissors = document.querySelector('.scissors-btn');
+scissors.addEventListener('click', () => {
+    playGame('✌️');
+})
+
+const reset = document.querySelector('.reset-btn');
+reset.addEventListener('click', () => {
+    resetScore();
+    stop_autoplay();
+})
+
+const auto_play = document.querySelector('.auto-play-btn');
+auto_play.addEventListener('click', () => {
+    autoplay();
+})
+
 function pickComputerMove() {
     const random = Math.random();
     let computerMove = '';
@@ -87,11 +115,13 @@ function autoplay()
             playGame(playerMove);
         }, 2000); // setInterval() performs actions continuously with defined interval breaks and it returns an ID
     }
-    else
-    {
-        clearInterval(intervalID); // stopping the setInterval() using clearInterval(ID);
-        isAutoPlay = false;
-    }
+    else stop_autoplay();
+}
+
+function stop_autoplay() // Separated stop_autoplay()
+{
+    clearInterval(intervalID); 
+    isAutoPlay = false;
 }
 
 function updateScore()
