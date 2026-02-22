@@ -25,7 +25,7 @@ function addEvent()
 function render()
 {
     let todoHTML = ``;
-    todoList.forEach( function (todoEvent, i) {
+    todoList.forEach( (todoEvent, i) => {
         const { event, date } = todoEvent;
         const html = `
             <div>${event}</div>
