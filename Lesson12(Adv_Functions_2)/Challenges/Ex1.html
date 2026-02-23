@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Challenges</title>
+    </head>
+    <body>
+        <script>
+            // 12j. , 12k.
+            const multiply = (a,b) => a*b;
+
+            console.log(multiply(3,4));
+            console.log(multiply(10,34));
+
+            // 12l.
+            function countPositive(nums)
+            {
+                let count = 0;
+                nums.forEach((value) => {
+                    if(value > 0) count++; 
+                })
+                return count;
+            }
+
+            const array1 = [-4, 3, -54, 6, 8];
+
+            console.log(countPositive(array1));
+
+            // 12m.
+            function addNum(nums, n)
+            {
+                return nums.map((value) => value + n);
+            }
+
+            console.log(addNum(array1, 20));
+
+            // 12n. 
+            function removeWeed(plants)
+            {
+                return plants.filter((plant) => plant.toLowerCase() !== 'weed');
+            }
+
+            const plants = ['rice', 'weed', 'corn', 'Wheat', 'Weed', 'soya', 'Rose', 'weed'];
+
+            console.log(removeWeed(plants));
+
+            // 12o.
+            function removeFirstNweed(plants, n)
+            {
+                // Multi line
+                /* 
+                return plants.filter((plant) => {
+                    if(plant.toLowerCase() !== 'weed') return true;
+                    return --n < 0;
+                });
+                */
+                return plants.filter((plant) => plant.toLowerCase() !== 'weed' || --n < 0); // one line
+            }
+
+            console.log(removeFirstNweed(plants, 2));
+
+            // 12p., 12q. modified in Exercises/Ex1.html
+        </script>
+    </body>
+</html>
