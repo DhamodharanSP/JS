@@ -25,8 +25,7 @@ scissors.addEventListener('click', () => {
 
 const reset = document.querySelector('.reset-btn');
 reset.addEventListener('click', () => {
-    resetScore();
-    stop_autoplay();
+    askReset(); // ask permission for reset
 })
 
 const auto_play = document.querySelector('.auto-play-btn');
@@ -34,15 +33,17 @@ auto_play.addEventListener('click', () => {
     autoplay();
 })
 
-// Keyboard event added
+// Keyboard events
 document.body.addEventListener('keydown', (event) => {
     let move;
-    if(event.key === 'r') move = '✊';
-    else if(event.key === 'p') move = '🖐️';
-    else if(event.key === 's') move = '✌️';
-    else return;
-    playGame(move);
-})
+    if(event.key === 'r') playGame('✊');
+    else if(event.key === 'p') playGame('🖐️');
+    else if(event.key === 's') playGame('✌️');
+    else if(event.key === 'Backspace') {
+        askReset();
+    }
+    console.log(event.key);
+});
 
 function pickComputerMove() {
     const random = Math.random();
@@ -96,6 +97,34 @@ function playGame(playerMove)
     displayMove(playerMove, computerMove);
     displayStatus(result);
     updateScore();
+}
+
+function askReset()
+{
+    const ask = document.querySelector('.ask-reset');
+    ask.innerHTML = `
+        <span>
+            Are you sure, you want to reset the score?
+        </span>
+        <button class="yes">
+            Yes
+        </button>
+        <button class="no">
+            No
+        </button>
+    `;
+
+    const yesButton = document.querySelector('.yes');
+    yesButton.addEventListener('click', () => {
+        resetScore();
+        if(isAutoPlay) stop_autoplay();
+        ask.innerHTML = '';
+    });
+
+    const noButton = document.querySelector('.no');
+    noButton.addEventListener('click', () => {
+        ask.innerHTML = '';
+    });
 }
 
 function resetScore()
