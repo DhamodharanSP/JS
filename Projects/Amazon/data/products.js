@@ -656,5 +656,53 @@ const products = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "addition-product-1",
+    image: "images/products/women-grey-shirt.jpg",
+    name: "Women's half shirt - Grey",
+    rating: {
+      stars: 5,
+      count: 2567
+    },
+    priceCents: 3500,
+    keywords: [
+      "women shirts",
+      "cool shirts",
+      "womens",
+      "clothings"
+    ]
+  },
+  {
+    id: "addition-product-2",
+    image: "images/products/women-white-jogger.jpg",
+    name: "Women's Cool Jogger - White",
+    rating: {
+      stars: 4.5,
+      count: 3768
+    },
+    priceCents: 3999,
+    keywords: [
+      "women pants",
+      "cool pants",
+      "womens",
+      "clothings"
+    ]
+  },
+  {
+    id: "addition-product-3",
+    image: "images/products/women-white-sneakers.jpg",
+    name: "Women's Sneakers - White",
+    rating: {
+      stars: 4,
+      count: 1570
+    },
+    priceCents: 2750,
+    keywords: [
+      "women shoes",
+      "nice shoes",
+      "womens",
+      "footwear"
+    ]
   }
 ];
