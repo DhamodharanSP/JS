@@ -61,48 +61,39 @@ productGrid.innerHTML = productsHTML;
 
 const addToCartButtons = document.querySelectorAll('.js-add-to-cart');
 
-addToCartButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        const { productId }= button.dataset;
-        
-        const quantityElement = document.querySelector(`.js-quantity-selector-${productId}`);
+// Add Items to Cart 
+function addToCart(productId, quantity)
+{
+    let matchingItem;
 
-        const quantity = Number(quantityElement.value);
-
-        let matchingItem;
-
-        cart.forEach((item) => {
-            if(productId === item.productId)
-                matchingItem = item;
-        });
-
-        if(matchingItem) matchingItem.quantity += quantity;
-        else 
-        {
-            cart.push({
-                productId,
-                quantity
-            });
-        }
-
-        let cartQuantity = 0;
-
-        cart.forEach((item) => {
-            cartQuantity += item.quantity;
-        });
-        
-        // Cart quantity count
-        const cartQuantityElement = document.querySelector('.js-cart-quantity');
-
-        cartQuantityElement.innerText = cartQuantity;
-
-        
-        const addedToCartElement = document.querySelector(`.js-added-to-cart-${productId}`);
-
-        addedAnimation(addedToCartElement);
-
+    cart.forEach((cartItem) => {
+        if(productId === cartItem.productId)
+            matchingItem = cartItem;
     });
-});
+
+    if(matchingItem) matchingItem.quantity += quantity;
+    else 
+    {
+        cart.push({
+            productId,
+            quantity
+        });
+    }
+}
+
+// Update the Cart quantity
+function updateCartQuantity()
+{
+    let cartQuantity = 0;
+
+    cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+    });
+    
+    const cartQuantityElement = document.querySelector('.js-cart-quantity');
+
+    cartQuantityElement.innerText = cartQuantity;
+}
 
 // Added to cart animation
 let addedAnimationID;
@@ -116,3 +107,21 @@ function addedAnimation(addedToCartElement) {
         addedToCartElement.classList.remove('added-to-cart-visible');
     }, 2000);
 }
+
+addToCartButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const { productId }= button.dataset;
+        
+        const quantityElement = document.querySelector(`.js-quantity-selector-${productId}`);
+
+        const quantity = Number(quantityElement.value);
+
+        addToCart(productId, quantity);
+
+        updateCartQuantity();
+                
+        const addedToCartElement = document.querySelector(`.js-added-to-cart-${productId}`);
+
+        addedAnimation(addedToCartElement);
+    });
+});
