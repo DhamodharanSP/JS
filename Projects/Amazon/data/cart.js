@@ -28,3 +28,9 @@ export function addToCart(productId, quantity)
         });
     }
 }
+
+// Remove from cart
+export function removeFromCart(productId)
+{
+    cart = cart.filter((cartItem) => productId !== cartItem.productId);
+}
