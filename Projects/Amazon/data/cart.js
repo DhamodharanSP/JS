@@ -33,3 +33,12 @@ export function removeFromCart(productId)
     cart = cart.filter((cartItem) => productId !== cartItem.productId);
     saveLocal();
 }
+
+export function getCartQuantity()
+{
+    let cartQuantity = 0;
+    cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+    })
+    return cartQuantity;
+}

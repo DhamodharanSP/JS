@@ -1,6 +1,8 @@
-import { cart, addToCart } from '../data/cart.js';
+import { cart, addToCart, getCartQuantity } from '../data/cart.js';
 import { products } from '../data/products.js'; 
 import { formatCurrency } from './utils/price.js';
+
+updateCartQuantity();
 
 let productsHTML = '';
 
@@ -65,15 +67,9 @@ const addToCartButtons = document.querySelectorAll('.js-add-to-cart');
 // Update the Cart quantity
 function updateCartQuantity()
 {
-    let cartQuantity = 0;
-
-    cart.forEach((cartItem) => {
-        cartQuantity += cartItem.quantity;
-    });
-    
     const cartQuantityElement = document.querySelector('.js-cart-quantity');
 
-    cartQuantityElement.innerText = cartQuantity;
+    cartQuantityElement.innerText = getCartQuantity() || '';
 }
 
 // Added to cart animation
