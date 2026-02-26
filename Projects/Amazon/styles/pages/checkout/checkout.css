@@ -209,3 +209,12 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+.input-quantity {
+  font-size: 1rem;
+  width: 30px;
+}
+
+.make-invisible {
+  display: none;
+}

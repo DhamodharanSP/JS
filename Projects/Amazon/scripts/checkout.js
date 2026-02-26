@@ -1,4 +1,4 @@
-import { cart, removeFromCart, getCartQuantity } from '../data/cart.js';
+import { cart, removeFromCart, getCartQuantity, modifyCartItem, getItemQuantity } from '../data/cart.js';
 import { products } from '../data/products.js';
 import { formatCurrency } from './utils/price.js';
 
@@ -10,12 +10,9 @@ cart.forEach((cartItem) => {
 
     const productId = cartItem.productId;
 
-    let matchingProduct;
+    const matchingProduct = products.find(product => product.id === productId);
 
-    products.forEach((product) => {
-        if(productId === product.id)
-            matchingProduct = product;
-    });
+    if(!matchingProduct) return;
 
     cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${productId}">
@@ -36,12 +33,24 @@ cart.forEach((cartItem) => {
                     </div>
                     <div class="product-quantity">
                         <span>
-                            Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                            Quantity: 
+                            <span class="js-update-quantity-${productId}">
+                                <span class="quantity-label js-quantity-label">
+                                    ${cartItem.quantity}
+                                </span>
+                                <span class="link-primary js-update-cart-item" data-product-id="${productId}">
+                                    Update
+                                </span>
+                            </span>
                         </span>
-                        <span class="update-quantity-link link-primary">
-                            Update
+                        
+                        <span class="make-invisible js-edit-quantity-${productId}">
+                            <input type="number" min="0" max="100" class="input-quantity js-input-quantity-${productId}" value=${cartItem.quantity}>
+                            <span class="link-primary save-btn-${productId}">
+                                Save
+                            </span>
                         </span>
-                        <span class="delete-quantity-link link-primary js-delete-cart-item" data-product-id="${productId}">
+                        <span class="link-primary js-delete-cart-item" data-product-id="${productId}">
                             Delete
                         </span>
                     </div>
@@ -100,17 +109,17 @@ orderSummaryElement.innerHTML = cartSummaryHTML;
 // deleting cart item
 const deleteCartItems = document.querySelectorAll('.js-delete-cart-item');
 
-deleteCartItems.forEach((link) => {
-    link.addEventListener('click', () => {
+deleteCartItems.forEach((deleteItem) => {
+    deleteItem.addEventListener('click', () => {
         // deleting product from cart
-        const { productId } = link.dataset;
+        const { productId } = deleteItem.dataset;
         removeFromCart(productId);
 
         updateCheckoutQuantity();
 
         // deleting product from webpage
-        const deleteCartItem = document.querySelector(`.js-cart-item-container-${productId}`);
-        deleteCartItem.remove();
+        const cartItemContainer = document.querySelector(`.js-cart-item-container-${productId}`);
+        if(cartItemContainer) cartItemContainer.remove();
     });
 });
 
@@ -118,6 +127,55 @@ deleteCartItems.forEach((link) => {
 function updateCheckoutQuantity()
 {
     const cartCheckoutElement = document.querySelector('.js-checkout-quantity');
-    
-    cartCheckoutElement.innerHTML = `${ getCartQuantity() || 'No' } Items`;
+    cartCheckoutElement.textContent = `${ getCartQuantity() || 'No' } Items`; // "element.textContent" instead of 'element.innerHTML / element.innerText'
 }
+
+
+// Update Item quantity
+const updateItemQuantityElements = document.querySelectorAll('.js-update-cart-item');
+
+updateItemQuantityElements.forEach((updateItem) => {
+    updateItem.addEventListener('click', () => {
+        const { productId } = updateItem.dataset;
+
+        // Remove update element
+        const updateElement = document.querySelector(`.js-update-quantity-${productId}`);
+        updateElement.classList.add('make-invisible');
+        
+        const editElement = document.querySelector(`.js-edit-quantity-${productId}`);
+        editElement.classList.remove('make-invisible');
+
+        const saveButton = document.querySelector(`.save-btn-${productId}`);
+
+        saveButton.addEventListener('click', () => {
+            const inputValue = editElement.querySelector('input');
+
+            const newQuantity = Number(inputValue.value);
+
+            modifyCartItem(productId, newQuantity);
+
+            //update item specific quantity
+            const quantity = getItemQuantity(productId);
+
+            updateCheckoutQuantity();
+
+            if(!quantity) 
+            {
+                removeFromCart(productId);
+                // deleting product from webpage
+                const deleteCartItem = document.querySelector(`.js-cart-item-container-${productId}`);
+                if(deleteCartItem) deleteCartItem.remove();
+                return;
+            }
+
+            const itemQuantity = updateItem.querySelector('.js-quantity-label');
+            itemQuantity.textContent = quantity;
+
+            // Remove edit
+            editElement.classList.add('make-invisible');
+            
+            // Added update back
+            updateElement.classList.remove('make-invisible');
+        }, {once: true});
+    });
+});
