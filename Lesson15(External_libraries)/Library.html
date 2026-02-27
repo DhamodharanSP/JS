@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>External Libraries</title>
+    </head>
+    <body>
+        <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script> <!-- Import of External libraries (It should be done before other script files)-->
+        <script> 
+            // DayJS
+
+            // dayjs() - returns current day object
+            const today = dayjs();
+            console.log(today);
+
+            // .add(time, 'format');
+            const nextWeek = today.add(7, 'days');
+            console.log(nextWeek);
+
+            // .format('format_type');
+
+            // 1)
+            console.log(today.format());
+
+            // 2)
+            console.log(today.format('DD/MM/YYYY'));
+
+            // 3)
+            console.log(today.format('dddd, MMMM D'));
+
+            // More formats are given in DayJS_Formats.pdf file
+
+        </script>
+    </body>
+</html>
