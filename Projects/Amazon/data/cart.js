@@ -37,6 +37,7 @@ export function removeFromCart(productId)
     saveLocal();
 }
 
+// Get total cart quantity
 export function getCartQuantity()
 {
     let cartQuantity = 0;
@@ -46,7 +47,7 @@ export function getCartQuantity()
     return cartQuantity;
 }
 
-// Modify cart item
+// Modify cart item quantity
 export function modifyCartItem(productId, quantity)
 {
     if(quantity < 0)
@@ -72,4 +73,12 @@ export function getItemQuantity(productId)
             matchingItem = cartItem; 
     });
     if(matchingItem) return matchingItem.quantity;
+}
+
+// Update delivery option for an item
+export function updateDeliveryOption(productId, deliveryOptionId)
+{
+    const matchingItem = cart.find(cartItem => cartItem.productId === productId);
+    matchingItem.deliveryOptionId = deliveryOptionId;
+    saveLocal();
 }
