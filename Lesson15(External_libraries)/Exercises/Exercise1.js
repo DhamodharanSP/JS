@@ -1,5 +1,6 @@
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
+import isDayWeekend from './weekend.js';
 
 const today = dayjs();
 
@@ -28,3 +29,7 @@ console.log(isWeekend(today));
 // Getting day number of the week - $W
 console.log(today.$W);
 
+// 15f.
+console.log(isDayWeekend(today));
+console.log(isDayWeekend(next5thDay));
+console.log(isDayWeekend(nextMonthDay));
