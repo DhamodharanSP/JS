@@ -1,7 +1,7 @@
 import { cart, removeFromCart, getCartQuantity, modifyCartItem, getItemQuantity, updateDeliveryOption } from '../../data/cart.js';
-import { products } from '../../data/products.js';
+import { getProduct } from '../../data/products.js';
 import formatCurrency from '../utils/price.js';
-import { deliveryOptions, calculateDeliveryDate } from '../../data/deliveryOptions.js';
+import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
 
 // Rendering Checkout page Order summary contents
@@ -13,13 +13,13 @@ export function renderOrderSummary()
 
         const productId = cartItem.productId;
 
-        const matchingProduct = products.find(product => product.id === productId);
+        const product = getProduct(productId);
 
-        if(!matchingProduct) return;
+        if(!product) return;
 
         const deliveryOptionId = cartItem.deliveryOptionId;
 
-        const deliveryOption = deliveryOptions.find(delivery => deliveryOptionId === delivery.id);
+        const deliveryOption = getDeliveryOption(deliveryOptionId);
 
         const dateString = calculateDeliveryDate(deliveryOption);
 
@@ -31,14 +31,14 @@ export function renderOrderSummary()
 
                 <div class="cart-item-details-grid">
                     <img class="product-image"
-                    src="${matchingProduct.image}">
+                    src="${product.image}">
 
                     <div class="cart-item-details">
                         <div class="product-name">
-                            ${matchingProduct.name}
+                            ${product.name}
                         </div>
                         <div class="product-price">
-                            $${formatCurrency(matchingProduct.priceCents)}
+                            $${formatCurrency(product.priceCents)}
                         </div>
                         <div class="product-quantity">
                             <span>

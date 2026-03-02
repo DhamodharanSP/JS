@@ -18,6 +18,11 @@ export const deliveryOptions = [
     },
 ];
 
+export function getDeliveryOption(deliveryOptionId)
+{
+    return deliveryOptions.find(deliveryOption => deliveryOption.id === deliveryOptionId);;
+}
+
 export function calculateDeliveryDate(deliveryOption)
 {
     const today = dayjs();

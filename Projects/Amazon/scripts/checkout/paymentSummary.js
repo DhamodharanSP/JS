@@ -1,6 +1,6 @@
 import { cart, getCartQuantity } from '../../data/cart.js';
-import { products } from '../../data/products.js';
-import { deliveryOptions } from '../../data/deliveryOptions.js';
+import { getProduct } from '../../data/products.js';
+import { getDeliveryOption } from '../../data/deliveryOptions.js';
 import formatCurrency from '../utils/price.js';
 import { taxRate } from '../config.js';
 
@@ -70,11 +70,11 @@ function getTotalCost()
     cart.forEach((cartItem) => {
         const productId = cartItem.productId;
 
-        const matchingItem = products.find(product => product.id === productId);
+        const product = getProduct(productId);
 
-        const itemPrice = matchingItem.priceCents * cartItem.quantity;
+        const itemPrice = product.priceCents * cartItem.quantity;
 
-        const deliveryOption = deliveryOptions.find(option => option.id === cartItem.deliveryOptionId);
+        const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
 
         const shippingPrice = deliveryOption.priceCents;
 
