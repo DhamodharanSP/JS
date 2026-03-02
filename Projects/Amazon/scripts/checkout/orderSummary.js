@@ -3,6 +3,7 @@ import { getProduct } from '../../data/products.js';
 import formatCurrency from '../utils/price.js';
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from '../../data/deliveryOptions.js';
 import { renderPaymentSummary } from './paymentSummary.js';
+import { updateCheckoutQuantity } from './checkoutHeader.js';
 
 // Rendering Checkout page Order summary contents
 export function renderOrderSummary()
@@ -114,13 +115,6 @@ function deliveryOptionsHTML(productId, cartItem)
     });
 
     return deliveryHTML;
-}
-
-// Update the Cart quantity
-function updateCheckoutQuantity()
-{
-    const cartCheckoutElement = document.querySelector('.js-checkout-quantity');
-    cartCheckoutElement.textContent = `${ getCartQuantity() || 'No' } Items`;
 }
 
 // Update Item quantity
