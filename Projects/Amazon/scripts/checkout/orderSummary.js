@@ -2,6 +2,7 @@ import { cart, removeFromCart, getCartQuantity, modifyCartItem, getItemQuantity,
 import { products } from '../../data/products.js';
 import formatCurrency from '../utils/price.js';
 import { deliveryOptions, calculateDeliveryDate } from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
 // Rendering Checkout page Order summary contents
 export function renderOrderSummary()
@@ -157,6 +158,8 @@ function updateItemQuantity()
                     // deleting product from webpage
                     const deleteCartItem = document.querySelector(`.js-cart-item-container-${productId}`);
                     if(deleteCartItem) deleteCartItem.remove();
+                    // Rendering payment summary
+                    renderPaymentSummary();
                     return;
                 }
 
@@ -168,6 +171,9 @@ function updateItemQuantity()
                 
                 // Added update back
                 updateElement.classList.remove('make-invisible');
+
+                // Rendering payment summary
+                renderPaymentSummary();
             }, {once: true});
         });
     });
@@ -189,6 +195,9 @@ function deleteCartItem()
             // deleting product from webpage
             const cartItemContainer = document.querySelector(`.js-cart-item-container-${productId}`);
             if(cartItemContainer) cartItemContainer.remove();
+
+            // Rendering payment summary
+            renderPaymentSummary();
         });
     });
 }
@@ -203,6 +212,7 @@ function updateDeliveryOptions()
             const { productId, deliveryOptionId } = deliveryOption.dataset;
             updateDeliveryOption(productId, deliveryOptionId);
             renderOrderSummary();
+            renderPaymentSummary();
         });
     });
 }
