@@ -1,4 +1,4 @@
-import formatCurrency from '../scripts/utils/price.js';
+import formatCurrency from '../../scripts/utils/price.js';
 
 console.log('Test suite: formatCurrency()');
 
