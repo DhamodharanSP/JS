@@ -41,7 +41,7 @@ export function renderOrderSummary()
                         <div class="product-price">
                             $${formatCurrency(product.priceCents)}
                         </div>
-                        <div class="product-quantity">
+                        <div class="product-quantity js-test-product-quantity-${productId}">
                             <span>
                                 Quantity: 
                                 <span class="js-update-quantity-${productId}">
