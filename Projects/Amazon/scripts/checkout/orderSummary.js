@@ -60,7 +60,7 @@ export function renderOrderSummary()
                                     Save
                                 </span>
                             </span>
-                            <span class="link-primary js-delete-cart-item" data-product-id="${productId}">
+                            <span class="link-primary js-delete-cart-item js-test-delete-${productId}" data-product-id="${productId}">
                                 Delete
                             </span>
                         </div>
