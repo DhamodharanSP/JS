@@ -1,6 +1,11 @@
-import { deliveryOptions } from "./deliveryOptions.js";
+export let cart;
 
-export let cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+loadCartFromStorage();
+
+export function loadCartFromStorage()
+{
+    cart = JSON.parse(localStorage.getItem('cartItems')) || [];
+}
 
 // Save cart to localStorage
 function saveLocal()
@@ -9,7 +14,7 @@ function saveLocal()
 }
 
 // Add Items to Cart 
-export function addToCart(productId, quantity)
+export function addToCart(productId, quantity = 1)
 {
     let matchingItem;
 
