@@ -1,4 +1,4 @@
-import { cart, addToCart, loadCartFromStorage } from "../src/data/cart.js";
+import { cart, addToCart, loadCartFromStorage } from "../../../data/cart.js";
 
 describe('test suite: addToCart()', () => {
     it('adds an existing product to the cart', () => {
@@ -32,7 +32,7 @@ describe('test suite: addToCart()', () => {
 
         loadCartFromStorage(); // again reloading the cart[] for updated mock
 
-        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6');
+        addToCart('e43638ce-6aa0-4b85-b27f-e1d07eb678c6', 1);
         expect(cart.length).toEqual(1); // checking if the addition of item is done
 
         // expect(<spy_obj>).toHaveBeenCalledTimes(Number) - returns how many times the Spy object (function) is called
