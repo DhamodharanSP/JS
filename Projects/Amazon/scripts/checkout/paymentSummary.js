@@ -26,14 +26,14 @@ export function renderPaymentSummary() {
 
             <div class="payment-summary-row">
                 <div>Shipping &amp; handling:</div>
-                <div class="payment-summary-money">
+                <div class="payment-summary-money js-test-shipping-cost">
                     $${formatCurrency(totalShippingCost)}
                 </div>
             </div>
 
             <div class="payment-summary-row subtotal-row">
                 <div>Total before tax:</div>
-                <div class="payment-summary-money">
+                <div class="payment-summary-money js-test-total-cost">
                     $${formatCurrency(totalAmount)}
                 </div>
             </div>

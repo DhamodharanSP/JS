@@ -98,9 +98,9 @@ function deliveryOptionsHTML(productId, cartItem)
         const isChecked = cartItem.deliveryOptionId === deliveryOption.id;
 
         deliveryHTML += `
-            <div class="delivery-option js-delivery-option" data-product-id="${productId}" data-delivery-option-id="${deliveryOption.id}">
+            <div class="delivery-option js-delivery-option js-test-delivery-option-${productId}-${deliveryOption.id}" data-product-id="${productId}" data-delivery-option-id="${deliveryOption.id}">
                 <input type="radio" ${isChecked ? 'checked' : ''}
-                class="delivery-option-input"
+                class="delivery-option-input js-test-delivery-option-input-${productId}-${deliveryOption.id}"
                 name="delivery-option-${productId}">
                 <div>
                     <div class="delivery-option-date">
