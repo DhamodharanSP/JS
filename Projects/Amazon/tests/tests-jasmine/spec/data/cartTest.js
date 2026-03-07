@@ -1,4 +1,4 @@
-import { cart, addToCart, loadCartFromStorage, removeFromCart } from "../../../../data/cart.js";
+import { cart, addToCart, loadCartFromStorage, removeFromCart, updateDeliveryOption } from "../../../../data/cart.js";
 
 describe('test suite: addToCart()', () => {
     //16e.
@@ -133,5 +133,68 @@ describe('test suite: removeFromCart()', () => {
                 deliveryOptionId: '2'
             }
         ]));
+    });
+});
+
+// 16k.
+describe('test suite: updateDeliveryOption()', () => {
+    const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c6';
+    const productId2 = '15b6fc6f-327a-4ec4-896f-486349e85a3d';
+    beforeEach(() => {
+        spyOn(localStorage, 'setItem');
+        spyOn(localStorage, 'getItem').and.callFake(() => {
+            return JSON.stringify([
+                {
+                    productId: productId1,
+                    quantity: 3,
+                    deliveryOptionId: '1'
+                },
+                {
+                    productId: productId2,
+                    quantity: 2,
+                    deliveryOptionId: '2'
+                }
+            ]);
+        });
+        loadCartFromStorage();
+    });
+
+    // 16k., 16l.
+    it('basic test: update delivery option of a product in the cart', () => {
+        updateDeliveryOption(productId1, '3');
+
+        // check if cart looks correct
+        expect(cart[0].productId).toEqual(productId1);
+        expect(cart[0].quantity).toEqual(3);
+        expect(cart[0].deliveryOptionId).toEqual('3');
+        expect(cart.length).toEqual(2);
+
+        // check if localStorage.setItem has been called once
+        expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+
+        // check if localStorage.setItem has been called with updated cart items
+        expect(localStorage.setItem).toHaveBeenCalledWith('cartItems', JSON.stringify([
+            {
+                productId: productId1,
+                quantity: 3,
+                deliveryOptionId: '3'
+            },
+            {
+                productId: productId2,
+                quantity: 2,
+                deliveryOptionId: '2'
+            }
+        ]));
+    });
+
+    it('edge case test: update the delivery option of a product that is not in the cart', () => {
+        const dummy = '83d4ca15-0f35-48f5-b7a3-1ea210004f2e';
+        updateDeliveryOption(dummy, 3);
+
+        // nothing changed
+        expect(cart.length).toEqual(2);
+
+        // no localStorage.setItem has been called since no matching item found
+        expect(localStorage.setItem).toHaveBeenCalledTimes(0);
     });
 });

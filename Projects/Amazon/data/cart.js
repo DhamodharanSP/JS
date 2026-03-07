@@ -84,6 +84,7 @@ export function getItemQuantity(productId)
 export function updateDeliveryOption(productId, deliveryOptionId)
 {
     const matchingItem = cart.find(cartItem => cartItem.productId === productId);
+    if(!matchingItem) return;
     matchingItem.deliveryOptionId = deliveryOptionId;
     saveLocal();
 }
