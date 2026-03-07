@@ -73,7 +73,6 @@ describe('test suite: renderOrderSummary()', () => {
         ).toEqual('$20.95');
     });
 
-    /*
     it('removes a product', () => {
         document.querySelector(`.js-test-delete-${productId1}`).click();
 
@@ -93,7 +92,6 @@ describe('test suite: renderOrderSummary()', () => {
 
         expect(cart[0].productId).toEqual(productId2);
     });
-    */
 
     // 16j.
     it('updating the delivery option', () => {
