@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>this keyword</title>
+    </head>
+    <body>
+        <script>
+            // 'this' with properties
+            // No error
+            const object = {
+                a: 5,
+                b: 6
+            };
+
+            // 'this' points to nothing - so, 'undefined'
+            const object2 = {
+                a: 5,
+                b: this.a
+            }
+
+            console.log(object);
+            console.log(object2);
+
+            // 'this' with methods
+            const math = {
+                num: 5,
+                double()
+                {
+                    return this.num * 2; // we can access the properties of the object with 'this'
+                }
+            };
+
+            console.log(math);
+            console.log(math.double(10));
+
+            // 'this' outside all
+            function thisObj()
+            {
+                console.log(this); // normally points to Window & it points to undefined within Module
+            }
+
+            thisObj();
+
+            // 'this' when .call() - returns the call object
+            function thisObjCall()
+            {
+                console.log(this);
+            }
+
+            thisObjCall.call('this will work');
+            thisObjCall.call(10);
+
+
+            function calc(a, b)
+            {
+                console.log(this);
+                console.log(a + b);
+            }
+
+            calc.call('addition', 5, 10); // first parameter will always points to 'this' when using .call()
+
+            // 'this' in arrow function - Arrow functions do not change the value of 'this', they are what they are in the beginning
+            const object4 = {
+                method: () => {
+                    console.log(this) // normal - Window; Method - undefined
+                }
+            };
+
+            object4.method();
+        </script>
+    </body>
+</html>
