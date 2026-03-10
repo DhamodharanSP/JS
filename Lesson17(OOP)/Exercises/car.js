@@ -1,20 +1,19 @@
 class Car
 {
-    brand;
+    #brand;
     model;
-    speed;
-    isTrunkOpen;
+    speed = 0;
+    isTrunkOpen = false;
+    topSpeed = 200;
     constructor(carDetails)
     {
-        this.brand = carDetails.brand;
+        this.#brand = carDetails.brand;
         this.model = carDetails.model;
-        this.speed = 0;
-        this.isTrunkOpen = false;
     }
 
     displayInfo()
     {
-        console.log(`${this.brand} ${this.model}, Speed: ${this.speed} km/h. Truck ${this.isTrunkOpen ? 'Opened' : 'Closed'}.`);
+        console.log(`${this.#brand} ${this.model}, Speed: ${this.speed} km/h.${this.isTrunkOpen === true ? ' Truck Opened' : this.isTrunkOpen === false ? ' Truck Closed' : ''}`);
     }
 
     go()
@@ -40,6 +39,34 @@ class Car
     }
 }
 
+class RaceCar extends Car
+{
+    acceleration;
+    constructor(carDetails)
+    {
+        super(carDetails);
+        this.topSpeed = 300;
+        this.acceleration = carDetails.acceleration;
+        this.isTrunkOpen = 'None';
+    }
+
+    go()
+    {
+        if(this.speed + this.acceleration <= this.topSpeed)
+            this.speed += this.acceleration;
+    }
+
+    openTrunk()
+    {
+        console.log(`Race cars don't have trunks`);
+    }
+
+    closeTrunk()
+    {
+        console.log(`Race cars don't have trunks`);
+    }
+}
+
 const cars = [
     {
         brand: 'Toyota',
@@ -56,8 +83,18 @@ const cars = [
     {
         brand: 'BMW',
         model: 'M4'
+    },
+    {
+        brand: 'McLaren',
+        model: 'F1',
+        acceleration: 20
     }
-].map((carDetails) => new Car(carDetails));
+].map((carDetails) => {
+    if(carDetails.acceleration) return new RaceCar(carDetails);
+    return new Car(carDetails)
+});
+
+console.log(cars);
 
 // 17c.
 cars[0].go();
@@ -70,5 +107,12 @@ cars[2].go();
 // 17d.
 cars[1].openTrunk();
 cars[3].openTrunk();
+
+// 17e.
+cars[4].go();
+cars[4].go();
+cars[4].go();
+cars[4].go();
+cars[4].go();
 
 cars.forEach((car) => car.displayInfo());
