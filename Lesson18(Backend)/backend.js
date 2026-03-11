@@ -1,6 +1,6 @@
 const request = new XMLHttpRequest();
 
-request.open('GET', 'https://supersimplebackend.dev');
+request.open('GET', 'https://supersimplebackend.dev/documentation');
 
 request.addEventListener('load', () => {
     console.log(request.response);
