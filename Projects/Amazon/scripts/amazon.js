@@ -1,8 +1,11 @@
-import { cart, addToCart, getCartQuantity } from '../data/cart.js';
-import { products, loadProducts } from '../data/products.js'; 
-import { formatCurrency } from './utils/price.js';
+import { addToCart, getCartQuantity } from '../data/cart.js';
+import { products, loadProducts } from '../data/products.js';
 
-loadProducts(renderProducts);
+// loadProducts(renderProducts); // XMLHttpRequest with callback function
+
+loadProducts().then(() => {
+    renderProducts();
+}); // using fetch()
 
 function renderProducts()
 {
