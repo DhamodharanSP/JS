@@ -18,7 +18,7 @@ export function loadCart(callback)
 */
 
 // loadCart() using fetch()
-export function loadCart(callback)
+export function loadCart()
 {
     const promise = fetch('https://supersimplebackend.dev/cart').then((response) => {
         return response.text();
