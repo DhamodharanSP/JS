@@ -11,7 +11,7 @@ export function loadProducts()
         console.log(products);
     });
 
-    request.addEventListener('error', () => {
+    request.addEventListener('error', (error) => {
         console.log('Unexpected error!');
     })
 
