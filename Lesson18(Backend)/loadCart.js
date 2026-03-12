@@ -1,5 +1,7 @@
 export let cart = [];
 
+// oadCart() using XMLHttpRequest
+/*
 export function loadCart(callback)
 {
     const request = new XMLHttpRequest();
@@ -12,4 +14,17 @@ export function loadCart(callback)
     });
 
     request.send();
+}
+*/
+
+// loadCart() using fetch()
+export function loadCart(callback)
+{
+    const promise = fetch('https://supersimplebackend.dev/cart').then((response) => {
+        return response.text();
+    }).then((cartData) => {
+        console.log(cartData);
+        console.log('finished loading cart...');
+    });
+    return promise;
 }
