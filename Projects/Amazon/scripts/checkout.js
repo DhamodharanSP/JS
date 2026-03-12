@@ -15,6 +15,7 @@ new Promise((resolve) => {
 */
 
 // using fetch()
+/*
 Promise.all([
     loadProducts(),
     // new async_functions to add in future
@@ -22,3 +23,13 @@ Promise.all([
     renderOrderSummary();
     renderPaymentSummary();
 });
+*/
+
+async function loadCheckoutPage()
+{
+    await loadProducts();
+    renderOrderSummary();
+    renderPaymentSummary();
+}
+
+loadCheckoutPage();
