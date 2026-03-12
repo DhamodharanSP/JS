@@ -15,9 +15,9 @@ new Promise((resolve) => {
             resolve();
         });
     });
-    
+
 }).then(() => {
     console.log('Next step - Rendering page');
-})
+}); // multiple promises instead of multiple callbacks to avoid nested code and flatten it for better readability and maintainability
 
 
