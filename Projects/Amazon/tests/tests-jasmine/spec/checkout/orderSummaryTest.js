@@ -8,8 +8,8 @@ describe('test suite: renderOrderSummary()', () => {
     let testContainer;
 
     beforeAll((done) => {
-        loadProducts(() => {
-            done(); // done() lets us control when to go to next step. It'll hold other codes from execution until its called. Note: if done() hasn't been called, then no code will be executed later infinitely
+        loadProducts().then(() => {
+            done(); // done() lets us control when to go to next step. It'll hold other codes from execution until its called. Note: if done() hasn't been called, then no code will be executed later infinitely. It's same as resolve()
         });
     });
 
