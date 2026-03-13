@@ -27,7 +27,12 @@ Promise.all([
 
 async function loadCheckoutPage()
 {
-    await loadProducts();
+    try {
+        await loadProducts();
+    }
+    catch(error) {
+        console.log('error loading products!');
+    }
     renderOrderSummary();
     renderPaymentSummary();
 }
