@@ -19,3 +19,19 @@ export function loadProducts()
 }
 
 loadProducts();
+
+// error in Promise
+export function fetchProducts()
+{
+    const promise = fetch('https://error.supersimplebackend.dev/products').then((response) => {
+        return response.json();
+    }).then((productDetails) => {
+        products = productDetails;
+        console.log('products loaded via fetchProducts()')
+    }).catch((error) => {
+        console.log('unexpected error in fetchProducts()');
+    });
+    return promise;
+}
+
+fetchProducts();
