@@ -52,3 +52,30 @@ async function asyncLoadProducts()
 }
 
 asyncLoadProducts();
+
+// try / catch - we can also use this in synchronous code
+try {
+    functionNotExist();
+    console.log('next code'); // the code after an error will be omitted and directed to catch() block
+}
+catch(error)
+{
+    console.log('unexpected error in calling function()');
+}
+
+// throw - throwing a manual error
+function factorial(n)
+{
+    if(n < 0) throw 'negative number not supported for factorial';
+    if(n === 0) return 1;
+    return n * factorial(n-1);
+}
+
+try 
+{
+    console.log(factorial(-5));
+}
+catch(error)
+{
+    console.log(`Error: ${error}`);
+}
