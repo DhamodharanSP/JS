@@ -35,3 +35,20 @@ export function fetchProducts()
 }
 
 fetchProducts();
+
+// error handling in async/await
+async function asyncLoadProducts()
+{
+    try {
+        await fetch('https://error.supersimplebackend.dev/products').then((response) => {
+            return response.json();
+        }).then((productDetails) => {
+            products = productDetails;
+        });
+    }
+    catch(error) {
+        console.log('unexpected error in asyncLoadProducts()')
+    }
+}
+
+asyncLoadProducts();
