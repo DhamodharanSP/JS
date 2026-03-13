@@ -79,3 +79,57 @@ catch(error)
 {
     console.log(`Error: ${error}`);
 }
+
+// throwing error in Promises
+
+// setup asynchronous callback function
+function loadCart(callback)
+{
+    const request = new XMLHttpRequest();
+
+    request.open('GET', 'https://supersimplebackend.dev/cart');
+
+    request.addEventListener('load', () => {
+        console.log(request.response);
+        callback();
+    });
+
+    request.send();
+}
+
+// 1) using 'throw'
+async function loadPage()
+{
+    try {
+        await new Promise((resolve) => {
+            throw 'error loading cart'; // explicit throw of error
+            loadCart(() => {
+                resolve(); // we can't use throw inside another async_function
+            });
+        });
+        console.log('next code after loading cart...');
+    }
+    catch(error) {
+        console.log('Unexpected error in loadPage()');
+    }
+}
+
+loadPage();
+
+// 2) using reject() - it'll create an error asynchronously in the future (callback in future)
+async function loadPageReject()
+{
+    try {
+        await new Promise((resolve, reject) => {
+            loadCart(() => {
+                reject('loading cart not allowed');
+            });
+        });
+        console.log('next code after loading cart...');
+    }
+    catch(error) {
+        console.log(error);
+    }
+}
+
+loadPageReject();
