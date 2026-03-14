@@ -52,7 +52,7 @@ export function renderPaymentSummary() {
                 </div>
             </div>
 
-            <button class="place-order-button button-primary">
+            <button class="place-order-button button-primary js-place-order">
                 Place your order
             </button>
         </div>
@@ -61,6 +61,8 @@ export function renderPaymentSummary() {
     const paymentSummaryElement = document.querySelector('.js-payment-summary');
 
     paymentSummaryElement.innerHTML = paymentHTML;
+
+    placeOrder();
 }
 
 function getTotalCost()
@@ -89,4 +91,24 @@ function getTotalCost()
 function calculateTax(priceAmount, taxRate)
 {
     return priceAmount * taxRate / 100;
+}
+
+function placeOrder()
+{
+    const placeOrderBtn = document.querySelector('.js-place-order');
+
+    placeOrderBtn.addEventListener('click', async () => {
+        const response = await fetch('https://supersimplebackend.dev/orders', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                cart: cart
+            })
+        });
+
+        const order = await response.json();
+        console.log(order);
+    });
 }
