@@ -117,6 +117,6 @@ function placeOrder()
             console.log('Unexpected Error while trying to place order');
         }
 
-        window.location.href = 'orders.html';
+        window.location.href = 'orders.html'; // this will control the url in the browser relative to current html file
     });
 }
