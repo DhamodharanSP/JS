@@ -37,3 +37,22 @@ export async function asyncGreet()
 }
 
 asyncGreet();
+
+// 18d.
+export async function asyncPostGreet()
+{
+    const response = await fetch(greetURL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: 'Dhamo'
+        })
+    });
+
+    const message = await response.text();
+    console.log(message);
+}
+
+asyncPostGreet();
