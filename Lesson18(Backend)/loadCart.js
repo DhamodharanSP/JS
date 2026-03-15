@@ -18,6 +18,7 @@ export function loadCart(callback)
 */
 
 // loadCart() using fetch()
+/*
 export function loadCart()
 {
     const promise = fetch('https://supersimplebackend.dev/cart').then((response) => {
@@ -27,4 +28,20 @@ export function loadCart()
         console.log('finished loading cart...');
     });
     return promise;
+}
+*/
+
+// async/await
+export async function loadCart()
+{
+    try {
+        const response = await fetch('https://supersimplebackend.dev/cart');
+        const data = await response.text();
+        console.log(data);
+        console.log('finished loading cart...');
+        return data;
+    }
+    catch (error) {
+        console.log('Unexpected error! failed loading cart');
+    }
 }

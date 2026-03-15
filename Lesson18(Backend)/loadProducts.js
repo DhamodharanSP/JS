@@ -19,6 +19,7 @@ export function loadProducts(render)
 */
 
 // loadProducts() using fetch()
+/*
 export function loadProducts()
 {
     console.log('load products');
@@ -29,4 +30,23 @@ export function loadProducts()
         console.log('finished loading products...');
     });
     return promise;
+}
+*/
+
+// async/await
+export async function loadProducts()
+{
+    try {
+        const response = await fetch('https://supersimplebackend.dev/products');
+        const data = await response.json();
+        if(data)
+        {
+            console.log('load products');
+            console.log('finished loading products...');
+        }
+        return data;
+    }
+    catch (error) {
+        console.log('Unexpected error! failed loading products');
+    }
 }

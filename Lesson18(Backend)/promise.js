@@ -48,7 +48,7 @@ Promise.all([
 */
 
 // Version 3
-
+/*
 Promise.all([
     loadProducts(), // function returning a promise
     loadCart()
@@ -56,3 +56,18 @@ Promise.all([
     console.log(values);
     console.log('Next step - Rendering page');
 });
+*/
+
+// Version 4 (async/await)
+async function loadPage()
+{
+    const [products, carts] = await Promise.all([
+        loadProducts(),
+        loadCart()
+    ]); // used array destructuring to stored individual promise result
+    console.log(products);
+    console.log(carts);
+    console.log('Next step - Rendering page');
+}
+
+loadPage();
