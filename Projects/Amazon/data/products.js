@@ -835,6 +835,7 @@ export function loadProducts(render)
 */
 
 // loadProducts() using fetch()
+/*
 export function loadProducts()
 {
   const promise = fetch('https://supersimplebackend.dev/products').then((response) => {
@@ -849,4 +850,18 @@ export function loadProducts()
     );
   });
   return promise;
+}
+*/
+
+// loadProducts() using async/await
+export async function loadProducts()
+{
+  const response = await fetch('https://supersimplebackend.dev/products');
+  const productsData = await response.json();
+  products = productsData.map((productDetails) => {
+    if(productDetails.type === 'clothing') return new Clothing(productDetails);
+    else if(productDetails.type === 'appliance') return new Appliance(productDetails);
+    else return new Product(productDetails);
+  });
+  return productsData;
 }
