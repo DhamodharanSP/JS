@@ -856,12 +856,17 @@ export function loadProducts()
 // loadProducts() using async/await
 export async function loadProducts()
 {
-  const response = await fetch('https://supersimplebackend.dev/products');
-  const productsData = await response.json();
-  products = productsData.map((productDetails) => {
-    if(productDetails.type === 'clothing') return new Clothing(productDetails);
-    else if(productDetails.type === 'appliance') return new Appliance(productDetails);
-    else return new Product(productDetails);
-  });
-  return productsData;
+  try {
+    const response = await fetch('https://supersimplebackend.dev/products');
+    const productsData = await response.json();
+    products = productsData.map((productDetails) => {
+      if(productDetails.type === 'clothing') return new Clothing(productDetails);
+      else if(productDetails.type === 'appliance') return new Appliance(productDetails);
+      else return new Product(productDetails);
+    });
+    return products;
+  }
+  catch (error) {
+    console.log(`Unexpected error! ${error}`);
+  }
 }
