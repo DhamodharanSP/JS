@@ -1,5 +1,6 @@
 import { addToCart, getCartQuantity } from '../data/cart.js';
 import { products, loadProducts } from '../data/products.js';
+import { updateCartQuantity } from './utils/cartUtility.js';
 
 // loadProducts(renderProducts); // XMLHttpRequest with callback function
 
@@ -79,7 +80,7 @@ function addToCartEvents()
 
     addToCartButtons.forEach((button) => {
         button.addEventListener('click', () => {
-            const { productId }= button.dataset;
+            const { productId } = button.dataset;
             
             const quantityElement = document.querySelector(`.js-quantity-selector-${productId}`);
 
@@ -96,23 +97,13 @@ function addToCartEvents()
     });
 }
 
-// Update the Cart quantity
-function updateCartQuantity()
-{
-    const cartQuantityElement = document.querySelector('.js-cart-quantity');
-
-    cartQuantityElement.innerText = getCartQuantity() || '';
-}
-
 // Added to cart animation
-let addedAnimationID;
-
 function addedAnimation(addedToCartElement) {
     addedToCartElement.classList.add('added-to-cart-visible');
 
-    clearTimeout(addedAnimationID);
+    clearTimeout(addedToCartElement.timeoutId);
     
-    addedAnimationID = setTimeout(() => {
+    addedToCartElement.timeoutId = setTimeout(() => {
         addedToCartElement.classList.remove('added-to-cart-visible');
     }, 2000);
 }
