@@ -88,3 +88,16 @@ export function updateDeliveryOption(productId, deliveryOptionId)
     matchingItem.deliveryOptionId = deliveryOptionId;
     saveLocal();
 }
+
+export function isCartEmpty()
+{
+    return cart.length === 0;
+}
+
+// Empty cart
+export function emptyCart()
+{
+    if(isCartEmpty()) return;
+    cart = [];
+    saveLocal();
+}
