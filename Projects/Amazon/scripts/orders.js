@@ -1,7 +1,12 @@
 import { orders } from '../data/orders.js';
 import { getProduct, loadProducts } from '../data/products.js';
+import { addToCart } from '../data/cart.js';
+import { formatCurrency } from '../scripts/utils/price.js';
+import { formatISOdate } from '../scripts/utils/date.js';
+import { updateCartQuantity } from './utils/cartUtility.js';
 
 await loadProducts();
+updateCartQuantity();
 renderOrdersPage();
 
 export function renderOrdersPage()
@@ -16,11 +21,11 @@ export function renderOrdersPage()
                             <div class="order-header-label">
                                 Order Placed:
                             </div>
-                            <div>${order.orderTime}</div>
+                            <div style="font-size: 0.9rem">${formatISOdate(order.orderTime, 'dayTime')}</div>
                         </div>
                         <div class="order-total">
                             <div class="order-header-label">Total:</div>
-                            <div>$${order.totalCostCents}</div>
+                            <div>$${formatCurrency(order.totalCostCents)}</div>
                         </div>
                     </div>
 
@@ -30,17 +35,20 @@ export function renderOrdersPage()
                     </div>
                 </div>
 
-                ${generateOrderItems(order.products)}
+                ${generateOrderItems(order)}
             </div>
         `;
     });
 
     const orderGrid = document.querySelector('.js-orders-grid');
     orderGrid.innerHTML = ordersHTML;
+
+    buyAgain();
 }
 
-function generateOrderItems(productDetails)
+function generateOrderItems(order)
 {
+    const productDetails = order.products;
     let productListHTML = '';
     productDetails.forEach((productDetail) => {
         const product = getProduct(productDetail.productId);
@@ -55,19 +63,21 @@ function generateOrderItems(productDetails)
                         ${product.name}
                     </div>
                     <div class="product-delivery-date">
-                        Arriving on: ${productDetail.estimatedDeliveryTime}
+                        Arriving on: ${formatISOdate(productDetail.estimatedDeliveryTime, 'day')}
                     </div>
                     <div class="product-quantity">
                         Quantity: ${productDetail.quantity}
                     </div>
-                    <button class="buy-again-button button-primary">
+                    <button class="buy-again-button button-primary js-buy-again" data-product-id=${product.id}>
                         <img class="buy-again-icon" src="images/icons/buy-again.png">
-                        <span class="buy-again-message">Buy it again</span>
+                        <span class="buy-again-message">
+                            Buy it again
+                        </span>
                     </button>
                 </div>
 
                 <div class="product-actions">
-                    <a href="tracking.html">
+                    <a href="tracking.html?orderId=${order.id}&productId=${product.id}">
                         <button class="track-package-button button-secondary">
                             Track package
                         </button>
@@ -76,5 +86,32 @@ function generateOrderItems(productDetails)
             </div>
         `;
     });
-    return productListHTML;    
+    return productListHTML;
+}
+
+function buyAgain()
+{
+    const buyAgainButtons = document.querySelectorAll('.js-buy-again');
+    buyAgainButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+            const { productId } = button.dataset;
+            addToCart(productId);
+            addedEffect(button);
+            updateCartQuantity();
+        });
+    });
+}
+
+function addedEffect(button)
+{
+    button.innerHTML = '✓ Added';
+    clearTimeout(button.timeoutId);
+    button.timeoutId = setTimeout(() => {
+        button.innerHTML = `
+            <img class="buy-again-icon" src="images/icons/buy-again.png">
+            <span class="buy-again-message">
+                Buy it again
+            </span>
+        `;
+    }, 1500);
 }
