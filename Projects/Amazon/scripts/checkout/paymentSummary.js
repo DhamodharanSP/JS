@@ -1,4 +1,4 @@
-import { cart, getCartQuantity } from '../../data/cart.js';
+import { cart, getCartQuantity, emptyCart, isCartEmpty } from '../../data/cart.js';
 import { getProduct } from '../../data/products.js';
 import { getDeliveryOption } from '../../data/deliveryOptions.js';
 import formatCurrency from '../utils/price.js';
@@ -96,10 +96,18 @@ function calculateTax(priceAmount, taxRate)
 
 function placeOrder()
 {
+    if(isCartEmpty())
+    {
+        const placeOrderBtnStyle = document.querySelector('.place-order-button');
+        placeOrderBtnStyle.classList.add('block-order');
+    }
     const placeOrderBtn = document.querySelector('.js-place-order');
 
     placeOrderBtn.addEventListener('click', async () => {
         try {
+            if(isCartEmpty()) {
+                return;
+            }
             const response = await fetch('https://supersimplebackend.dev/orders', {
                 method: 'POST',
                 headers: {
@@ -112,6 +120,7 @@ function placeOrder()
 
             const order = await response.json();
             addOrder(order);
+            emptyCart();
         }
         catch (error) {
             console.log('Unexpected Error while trying to place order');
