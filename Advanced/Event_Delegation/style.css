@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+}
+
+body {
+    height: 100vh;
+    background-color: #1a1320;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 70%;
+    height: 50vh;
+    background-color: #29232e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.btn, .one, .two, .three {
+    padding: .5rem 1rem;
+    border: none;
+    border-radius: .75rem;
+    color: #fff;
+}
+
+.one {
+    background-color: teal;
+}
+
+.two {
+    background-color:coral;
+}
+
+.three {
+    background-color: blueviolet;
+}
+
+.four {
+    background-color: red;
+}
+
+.five {
+    background-color: #00f;
+}
+
+.six {
+    background-color: #0f0;
+}
