@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array functions</title>
+</head>
+<body>
+    <script>
+        // Reduce method
+
+        // Syntax:
+        // array.reduce((accumulator, current) => result, initialValue)
+
+        // Basic array
+        const nums = [10, 20, 30, 40, 50];
+
+        const sum = nums.reduce((acc, num) => acc + num, 0);
+
+        console.log(sum);
+
+        // Functions
+        function double(num)
+        {
+            return num * 2;
+        }
+
+        const triple = (num) => num * 3;
+
+        const math = {
+            square(num) {
+                return num * num;
+            }
+        }
+
+        const functions = [
+            double,
+            triple,
+            math.square
+        ];
+
+        const result = functions.reduce( (accumulatedValue, currentFunction) => currentFunction(accumulatedValue), 2 );  // 2 => math.square(triple(double(2))) == 2 => double(2) => triple(4) => square(12) => 144
+
+        console.log(result);
+
+        // array.reduce() is a best way to induce nested functions
+    </script>
+</body>
+</html>
