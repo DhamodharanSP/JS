@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debounce</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <section class="container">
+        <button class="btn js-btn">
+            Click
+        </button>
+    </section>
+    <script type="module">
+        // Button spam prevention using Debounce
+        import { debounce } from './scripts/debounce.js';
+
+        const handleClick = debounce(() => console.log('Clicked'), 300);
+
+        const button = document.querySelector('.js-btn');
+        button.addEventListener('click', handleClick);
+    </script>
+</body>
+</html>

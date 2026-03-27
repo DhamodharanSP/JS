@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulate API search</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <section class="container">
+        <input type="text" placeholder="Search" class="search-input js-search-input">
+        <div class="result js-result"></div>
+    </section>
+    <script type="module">
+        // Simulating search on fetch API
+        import { debounce } from './scripts/debounce.js';
+
+        const resultElement = document.querySelector('.js-result');
+        const handleSearch = debounce(() => {
+            resultElement.textContent = searchInput.value;
+        }, 300);
+
+        const searchInput = document.querySelector('.js-search-input');
+        searchInput.addEventListener('input', handleSearch);
+    </script>
+</body>
+</html>

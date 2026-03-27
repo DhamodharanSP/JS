@@ -1,0 +1,41 @@
+body {
+    height: 100vh;
+    background-color: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 50vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #333;
+}
+
+.btn {
+    border: none;
+    padding: .5rem 1rem;
+    border-radius: .5rem;
+    background-color: teal;
+    cursor: pointer;
+}
+
+.search-input {
+    padding: .5rem;
+    border-radius: 1rem 0;
+}
+
+.search-input:focus {
+    outline: none;
+    border: 2px solid orange;
+}
+
+.result {
+    margin: 1rem;
+    padding: 1rem;
+    background-color: aquamarine;
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Window Resize</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <section class="container">
+        <div class="result js-result"></div>
+    </section>
+    <script type="module">
+        // Handling window resize efficiently using Debounce
+        import { debounce } from './scripts/debounce.js';
+
+        const resultElement = document.querySelector('.js-result');
+        const handleWindowResize = debounce(() => {
+            const result = `
+                Height: ${window.innerHeight}
+                Width: ${window.innerWidth}
+            `;
+            resultElement.textContent = result;
+        }, 300);
+
+        window.addEventListener('resize', handleWindowResize);
+    </script>
+</body>
+</html>
