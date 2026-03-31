@@ -8,6 +8,7 @@ body {
     background: #333;
     display: flex;
     justify-content: space-around;
+    height: 100vh;
 }
 
 .drag-box {
@@ -16,11 +17,24 @@ body {
     background-color: teal;
 }
 
+.box-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.drop-container {
+    display: flex;
+    justify-content: space-between;
+    flex-basis: 40vw;
+}
+
 .container {
-    height: 500px;
-    width: 200px;
+    flex-basis: 300px;
     background-color: cadetblue;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     padding: 2rem;
+    margin: 0 1rem;
 }
