@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #333;
+}
+
+.drag-box {
+    width: 100px;
+    height: 100px;
+    background-color: teal;
+}
