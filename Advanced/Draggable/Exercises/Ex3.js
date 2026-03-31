@@ -2,12 +2,13 @@ let dragItem = null;
 
 document.addEventListener('dragstart', (event) => {
     const { target } = event;
+    if (!target.classList.contains('drag-box')) return;
     dragItem = target; 
     console.log('Drag started');
 });
 
 document.addEventListener('dragend', () => {
-    dragItem = '';
+    dragItem = null;
     console.log('Drag ended');
 });
 
@@ -20,6 +21,6 @@ dropContainer.addEventListener('dragover', (event) => {
 dropContainer.addEventListener('drop', (event) => {
     const { target } = event;
     const dropBox = target.closest('.container');
-    if(dropBox) dropBox.appendChild(dragItem);
+    if(dropBox && dragItem) dropBox.appendChild(dragItem);
     console.log('dropped');
 });
